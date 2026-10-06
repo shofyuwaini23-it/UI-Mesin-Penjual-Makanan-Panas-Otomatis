@@ -15,18 +15,18 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'id_pegawai' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['id_pegawai' => $credentials['id_pegawai'], 'password' => $credentials['password']])) {
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('products.index'));
         }
 
         return back()->withErrors([
-            'id_pegawai' => 'Invalid Employee ID or password.',
-        ])->withInput($request->only('id_pegawai'));
+            'email' => 'Invalid email or password.',
+        ])->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
