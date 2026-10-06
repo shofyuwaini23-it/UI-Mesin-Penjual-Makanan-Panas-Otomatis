@@ -243,7 +243,7 @@
                     </div>
 
                     <a
-                        href="#"
+                        href="{{ route('products.show', ['id' => $product['id']]) }}"
                         class="detail-button"
                     >
                         Lihat Detail
