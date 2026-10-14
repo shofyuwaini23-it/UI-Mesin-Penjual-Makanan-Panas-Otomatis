@@ -6,138 +6,114 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
     private function products()
     {
         return [
             [
                 'id' => 1,
                 'name' => 'Mie Tarempa',
-                'category' => 'Makanan',
                 'price' => 23000,
+                'category' => 'makanan',
+                'recommended' => true,
                 'image' => 'https://www.finnafood.com/blog/wp-content/uploads/2024/07/resep-mie-tarempa.jpg',
-                'description' => 'Mie pipih khas Tarempa dengan racikan kecap gurih, telur, tauge, daun bawang, dan taburan bawang renyah.',
-
-                'stock' => 8,
-                'calories' => 420,
-                'protein' => 16,
-                'carbohydrates' => 55,
-                'fat' => 12,
-                'favorite' => true,
+                'description' => 'Mie pipih khas Tarempa dengan kecap gurih, telur, tauge, daun bawang, dan bawang renyah.',
             ],
-
             [
                 'id' => 2,
                 'name' => 'Mie Tarempa Ayam',
-                'category' => 'Makanan',
                 'price' => 23000,
+                'category' => 'makanan',
+                'recommended' => true,
                 'image' => 'https://i0.wp.com/resepkoki.id/wp-content/uploads/2021/03/Resep-Mie-Tarempa.jpg?fit=996%2C1328&ssl=1',
-                'description' => 'Mie tarempa dengan tambahan daging ayam yang gurih dan lembut.',
-
-                'stock' => 6,
-                'calories' => 450,
-                'protein' => 22,
-                'carbohydrates' => 58,
-                'fat' => 14,
-                'favorite' => true,
+                'description' => 'Mie Tarempa dengan daging ayam.',
             ],
-
             [
                 'id' => 3,
                 'name' => 'Mie Tarempa Sapi',
-                'category' => 'Makanan',
                 'price' => 23000,
+                'category' => 'makanan',
+                'recommended' => false,
                 'image' => 'https://assets-a1.kompasiana.com/items/album/2019/07/12/img-3773-jpg-5d276be4097f361dce2245b2.jpg',
-                'description' => 'Mie tarempa dengan potongan daging sapi yang gurih dan nikmat.',
-
-                'stock' => 5,
-                'calories' => 480,
-                'protein' => 25,
-                'carbohydrates' => 57,
-                'fat' => 17,
-                'favorite' => false,
+                'description' => 'Mie Tarempa dengan daging sapi.',
             ],
-
             [
                 'id' => 4,
                 'name' => 'Mie Tarempa Seafood',
-                'category' => 'Makanan',
                 'price' => 23000,
+                'category' => 'makanan',
+                'recommended' => true,
                 'image' => 'https://allofresh.id/blog/wp-content/uploads/2023/05/resep-mie-tarempa-4.jpg',
-                'description' => 'Mie tarempa dengan berbagai bahan laut pilihan yang gurih dan lezat.',
-
-                'stock' => 4,
-                'calories' => 460,
-                'protein' => 24,
-                'carbohydrates' => 52,
-                'fat' => 15,
-                'favorite' => false,
+                'description' => 'Mie Tarempa dengan bahan laut.',
             ],
         ];
     }
 
     public function index(Request $request)
     {
+        $allProducts = collect($this->products());
+        $search = trim($request->query('search', ''));
+        $category = $request->query('category', 'all');
 
-        $products = $this->products();
+        $products = $allProducts->filter(function ($product) use (
+            $search, $category
+        ) {
+            $matchSearch = $search === '' ||
+                str_contains(
+                    strtolower($product['name']),
+                    strtolower($search)
+                );
 
-        $search = $request->search;
-        $category = $request->category;
+            $matchCategory = match ($category) {
+                'recommended' => $product['recommended'],
+                'makanan' => $product['category'] === 'makanan',
+                'snack' => $product['category'] === 'snack',
+                default => true,
+            };
 
-        if ($search) {
+            return $matchSearch && $matchCategory;
+        });
 
-            $products = array_filter(
-                $products,
-                function ($product) use ($search) {
-
-                    return stripos(
-                        $product['name'],
-                        $search
-                    ) !== false;
-                }
-            );
-        }
-
-        if ($category && $category !== 'Semua') {
-
-            $products = array_filter(
-                $products,
-                function ($product) use ($category) {
-
-                    return $product['category'] === $category;
-                }
-            );
-        }
-
-        return view(
-            'products.index',
-            compact(
-                'products',
-                'search',
-                'category'
-            )
-        );
+        return view('products.index', compact(
+            'products', 'search', 'category'
+        ))->with('selectedProduct', null)
+          ->with('step', 'detail')
+          ->with('quantity', 1);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-
-        $products = $this->products();
-  
-        $product = collect($products)
+        $selectedProduct = collect($this->products())
             ->firstWhere('id', (int) $id);
 
-        if (!$product) {
+        abort_if(!$selectedProduct, 404);
 
-            abort(
-                404,
-                'Produk tidak ditemukan.'
-            );
-        }
+        $products = collect($this->products());
+        $search = '';
+        $category = 'all';
+        $step = $request->query('step', 'detail');
+        $quantity = max(1, min(
+            8, (int) $request->query('quantity', 1)
+        ));
 
-        return view(
-            'products.show',
-            compact('product')
-        );
+        return view('products.index', compact(
+            'products', 'selectedProduct', 'search',
+            'category', 'step', 'quantity'
+        ));
+    }
+
+    public function checkout(Request $request, $id)
+    {
+        $product = collect($this->products())
+            ->firstWhere('id', (int) $id);
+
+        abort_if(!$product, 404);
+
+        $quantity = max(1, min(
+            8, (int) $request->query('quantity', 1)
+        ));
+
+        return view('products.checkout', compact(
+            'product', 'quantity'
+        ));
     }
 }
