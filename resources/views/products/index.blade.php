@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tarempa - Vending Food</title>
+<link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
 
 <style>
 *{box-sizing:border-box}
@@ -501,5 +502,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 </script>
+<script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 </body>
 </html>

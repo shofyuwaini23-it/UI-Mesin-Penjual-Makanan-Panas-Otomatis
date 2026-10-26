@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
 </head>
 <body>
     <div class="container">
@@ -33,5 +34,6 @@
             alert("{{ session('error') }}");
         @endif
     </script>
+    <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - TAREMPA</title>
+    <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
     <style>
         * { box-sizing: border-box; }
 
@@ -163,5 +164,6 @@
             }
         }
     </script>
+    <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 </body>
 </html>

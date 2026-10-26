@@ -1,0 +1,88 @@
+/* TAREMPA - Simulasi Kiosk 10 Inch */
+
+:root {
+    --kiosk-width: 746px;
+    --kiosk-height: 1280px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #292929;
+    font-family: Inter, Arial, sans-serif;
+}
+
+/* Area pembungkus yang berada di tengah monitor */
+.kiosk-stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #292929;
+}
+
+/* Kanvas asli: ukurannya selalu 746 x 1280 px */
+.kiosk-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--kiosk-width);
+    height: var(--kiosk-height);
+    min-width: var(--kiosk-width);
+    min-height: var(--kiosk-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform-origin: center center;
+    background: #fff7ec;
+    color: #39291e;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Pastikan konten halaman mengikuti lebar kanvas */
+.kiosk-screen .container,
+.kiosk-screen .kiosk,
+.kiosk-screen .checkout {
+    max-width: 746px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Kartu katalog dua kolom */
+.kiosk-screen .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Kontrol sentuh */
+.kiosk-screen button,
+.kiosk-screen a,
+.kiosk-screen input,
+.kiosk-screen select {
+    touch-action: manipulation;
+}
+
+/* Gambar tidak melebar melewati elemen */
+.kiosk-screen img {
+    max-width: 100%;
+}
+
+/* Scrollbar kanvas */
+.kiosk-screen::-webkit-scrollbar {
+    width: 6px;
+}
+
+.kiosk-screen::-webkit-scrollbar-thumb {
+    background: #d6c5b5;
+    border-radius: 8px;
+}

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Detail Menu - Tarempa</title>
+<link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
 
 <style>
 *{box-sizing:border-box}
@@ -165,5 +166,6 @@ function buyProduct() {
     window.location.href = url.toString();
 }
 </script>
+<script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 </body>
 </html>

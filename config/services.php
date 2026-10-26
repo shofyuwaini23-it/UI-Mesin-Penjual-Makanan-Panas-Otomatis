@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'vending' => [
+        'base_url' => env('API_BASE_URL'),
+        'timeout' => (int) env('API_TIMEOUT', 5),
+    ],
+
 ];
