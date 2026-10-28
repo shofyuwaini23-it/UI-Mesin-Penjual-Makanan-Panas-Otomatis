@@ -112,7 +112,7 @@ class ProductController extends Controller
             8, (int) $request->query('quantity', 1)
         ));
 
-        return view('products.checkout', compact(
+        return view('products.check', compact(
             'product', 'quantity'
         ));
     }

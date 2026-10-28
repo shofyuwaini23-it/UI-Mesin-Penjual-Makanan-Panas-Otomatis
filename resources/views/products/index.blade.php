@@ -221,6 +221,123 @@ body.modal-open{overflow:hidden}
     .quantity{gap:6px;padding:5px}
     .buy{font-size:12px}
 }
+
+/* Modal pembayaran QRIS */
+.qris-modal {
+    max-width: 440px;
+}
+
+.qris-total {
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+    background: #f4511e;
+    color: white;
+}
+
+.qris-total small {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.qris-total h2 {
+    margin: 8px 0;
+    font-size: 28px;
+}
+
+.qris-total p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.qris-timer {
+    padding: 12px;
+    margin: 14px 0;
+    border-radius: 12px;
+    background: #fff0df;
+    text-align: center;
+}
+
+.qris-timer strong {
+    display: block;
+    margin-top: 4px;
+    color: #f4511e;
+    font-size: 25px;
+}
+
+.qris-code {
+    display: flex;
+    justify-content: center;
+    margin: 16px auto;
+}
+
+.qris-code svg {
+    width: 190px;
+    height: 190px;
+    padding: 10px;
+    border: 1px solid #e8d9c9;
+    border-radius: 12px;
+    background: white;
+}
+
+.qris-note {
+    color: #89715e;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.qris-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.qris-actions button {
+    flex: 1;
+    padding: 13px 8px;
+    border: 0;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.qris-cancel {
+    background: #ffe5c6;
+    color: #432718;
+}
+
+.qris-success {
+    background: #432718;
+    color: white;
+}
+
+.qris-status {
+    display: none;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    background: #e5f5e9;
+    color: #246b3b;
+    text-align: center;
+}
+
+.qris-status.error {
+    background: #fff0df;
+    color: #a53b1d;
+}
+
+@media (max-width: 600px) {
+    .qris-modal {
+        padding: 18px;
+    }
+
+    .qris-code svg {
+        width: 170px;
+        height: 170px;
+    }
+}
+
 </style>
 </head>
 
@@ -327,7 +444,7 @@ body.modal-open{overflow:hidden}
 
 @if(isset($selectedProduct) && $selectedProduct)
 <div class="modal-overlay" id="detailModal">
-    <section class="modal">
+    <section class="modal {{ ($step ?? 'detail') === 'qris' ? 'qris-modal' : '' }}">
         @if(($step ?? 'detail') === 'confirm')
             <div class="modal-header">
                 <h2>KONFIRMASI PESANAN</h2>
@@ -370,13 +487,27 @@ body.modal-open{overflow:hidden}
                 </a>
 
             </div>
+        @elseif(($step ?? 'detail') === 'qris')
+            @include('products.qris-modal')
 
         @elseif(($step ?? 'detail') === 'payment')
             <div class="modal-header"><div><h2 style="margin-top:8px">Pilih metode pembayaran</h2></div><button class="close" onclick="closeModal()">×</button></div>
             <p class="description">Semua transaksi aman dan diproses secara nontunai.</p>
             <div class="total-box" style="background:#f4511e;color:white"><small>TOTAL BAYAR</small><h2>Rp {{ number_format($selectedProduct['price']*$quantity,0,',','.') }}</h2><p style="color:white">{{ $quantity }} × {{ $selectedProduct['name'] }} </p></div>
             <p style="font-size:12px;color:#897f75">METODE TERSEDIA</p>
-            <a class="payment-option qris" href="{{ route('checkout.show',$selectedProduct['id']) }}?quantity={{ $quantity }}&method=qris"><span class="payment-icon">▦</span><span><b>QRIS</b><small>Pindai dengan GoPay, OVO, DANA, ShopeePay, atau aplikasi bank.</small></span><span class="payment-arrow">›</span></a>
+            <a class="payment-option qris"
+            href="{{ route('products.show', [
+                'id' => $selectedProduct['id'],
+                'step' => 'qris',
+                'quantity' => $quantity
+            ]) }}">
+            <span class="payment-icon">▦</span>
+            <span>
+                <b>QRIS</b>
+                <small>Pindai dengan GoPay, OVO, DANA, ShopeePay, atau aplikasi bank.</small>
+            </span>
+            <span class="payment-arrow">›</span>
+        </a>
             <a class="payment-option" href="{{ route('checkout.show',$selectedProduct['id']) }}?quantity={{ $quantity }}&method=va"><span class="payment-icon va-icon">♧</span><span><b>Virtual Account</b><small>Transfer melalui m-banking atau e-wallet ke nomor VA unik.</small></span><span class="payment-arrow">›</span></a>
             <a class="back-payment" href="{{ route('products.show',$selectedProduct['id']) }}?step=confirm&quantity={{ $quantity }}">← Kembali ke konfirmasi</a>
         @else

@@ -145,24 +145,36 @@
     </main>
 
     <script>
-        function confirmPayment() {
-            const payment = document.querySelector(
-                'input[name="payment"]:checked'
-            ).value;
-
-            const message = document.getElementById('message');
-            message.style.display = 'block';
-
-            if (payment === 'QRIS') {
-                message.innerHTML =
-                    '<strong>Simulasi QRIS</strong><br>' +
-                    'Metode QRIS dipilih. Pembayaran asli belum terhubung.';
-            } else {
-                message.innerHTML =
-                    '<strong>Simulasi Virtual Account</strong><br>' +
-                    'Metode VA dipilih. Pembayaran asli belum terhubung.';
-            }
+    function confirmPayment() {
+        const selectedPayment = document.querySelector(
+            'input[name="payment"]:checked'
+        );
+        
+        if (!selectedPayment) {
+            alert('Pilih metode pembayaran terlebih dahulu.');
+            return;
         }
+        
+        const payment = selectedPayment.value;
+        
+        if (payment === 'QRIS') {
+            const params = new URLSearchParams({
+                product_id: @json($product['id']),
+                quantity: @json($quantity)
+            });
+            
+            window.location.href =
+            "{{ route('payment.qris') }}" + '?' + params.toString();
+        } else {
+            const message = document.getElementById('message');
+            
+            message.style.display = 'block';
+            message.innerHTML =
+            '<strong>Simulasi Virtual Account</strong><br>' +
+            'Pembayaran VA belum terhubung ke sistem pembayaran asli.';
+        }
+    }
+
     </script>
     <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 </body>
