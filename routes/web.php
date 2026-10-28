@@ -21,6 +21,3 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
 
 Route::get('/checkout/{id}', [ProductController::class, 'checkout'])
     ->name('checkout.show');
-
-Route::view('/payment/qris', 'payment.qris')
-    ->name('payment.qris');

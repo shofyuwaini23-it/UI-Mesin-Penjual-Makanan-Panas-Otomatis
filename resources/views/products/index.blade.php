@@ -489,6 +489,9 @@ body.modal-open{overflow:hidden}
             </div>
         @elseif(($step ?? 'detail') === 'qris')
             @include('products.qris-modal')
+        
+        @elseif(($step ?? 'detail') === 'va')
+            @include('products.va-modal')
 
         @elseif(($step ?? 'detail') === 'payment')
             <div class="modal-header"><div><h2 style="margin-top:8px">Pilih metode pembayaran</h2></div><button class="close" onclick="closeModal()">×</button></div>
@@ -508,8 +511,20 @@ body.modal-open{overflow:hidden}
             </span>
             <span class="payment-arrow">›</span>
         </a>
-            <a class="payment-option" href="{{ route('checkout.show',$selectedProduct['id']) }}?quantity={{ $quantity }}&method=va"><span class="payment-icon va-icon">♧</span><span><b>Virtual Account</b><small>Transfer melalui m-banking atau e-wallet ke nomor VA unik.</small></span><span class="payment-arrow">›</span></a>
-            <a class="back-payment" href="{{ route('products.show',$selectedProduct['id']) }}?step=confirm&quantity={{ $quantity }}">← Kembali ke konfirmasi</a>
+        <a class="payment-option"
+        href="{{ route('products.show', [
+            'id' => $selectedProduct['id'],
+            'step' => 'va',
+            'quantity' => $quantity
+        ]) }}">
+        <span class="payment-icon va-icon">♧</span>
+        <span>
+            <b>Virtual Account</b>
+            <small>Transfer melalui m-banking atau e-wallet ke nomor VA.</small>
+        </span>
+        <span class="payment-arrow">›</span>
+        </a>
+        <a class="back-payment" href="{{ route('products.show',$selectedProduct['id']) }}?step=confirm&quantity={{ $quantity }}">← Kembali ke konfirmasi</a>
         @else
             <div class="modal-header">
                 <h2>Detail Menu</h2>
