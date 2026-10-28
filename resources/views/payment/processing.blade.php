@@ -503,8 +503,14 @@
             document.getElementById('step3Detail').textContent =
                 'Tahapan berikutnya ditampilkan sebagai ilustrasi UI.';
 
-            document.getElementById('finishButton').style.display =
-                'block';
+            // Pembayaran berhasil: tampilkan selama 7 detik,
+            // lalu lanjut otomatis ke halaman status pesanan.
+            document.getElementById('finishButton').style.display = 'none';
+
+            window.setTimeout(function () {
+                window.location.href =
+                    @json(route('orders.status', ['id' => $product['id'], 'quantity' => $quantity]));
+            }, 7000);
         }, 3000);
     </script>
 </body>

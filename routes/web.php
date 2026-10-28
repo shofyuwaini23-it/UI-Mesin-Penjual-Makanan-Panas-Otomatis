@@ -26,3 +26,6 @@ Route::get('/payment/processing/{id}', [
     ProductController::class,
     'processing'
     ])->name('payment.processing');
+
+Route::get('/orders/status/{id}', [ProductController::class, 'status'])
+    ->name('orders.status');

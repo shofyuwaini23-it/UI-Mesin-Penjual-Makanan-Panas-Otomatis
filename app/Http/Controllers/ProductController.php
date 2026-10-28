@@ -148,4 +148,20 @@ class ProductController extends Controller
         'orderNumber'
     ));
 }
+
+    public function status(Request $request, $id)
+    {
+        $product = collect($this->products())
+            ->firstWhere('id', (int) $id);
+
+        abort_if(!$product, 404);
+
+        $quantity = max(1, min(8, (int) $request->query('quantity', 1)));
+        $orderNumber = 'A-024';
+
+        return view('products.status', compact(
+            'product', 'quantity', 'orderNumber'
+        ));
+    }
+
 }
