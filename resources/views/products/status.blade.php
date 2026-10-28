@@ -599,6 +599,16 @@
 
             document.getElementById('progressTitle').textContent =
                 'Pesananmu sudah siap!';
+
+            // Biarkan centang terlihat selama 1,5 detik,
+            // lalu lanjut ke halaman pesanan selesai.
+            setTimeout(() => {
+                window.location.href =
+                    @json(route('orders.finished', [
+                        'id' => $product['id'] ?? 1,
+                        'quantity' => $quantity ?? 1
+                    ]));
+            }, 1500);
         }
 
         updateProgress();
