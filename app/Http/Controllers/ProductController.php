@@ -116,4 +116,36 @@ class ProductController extends Controller
             'product', 'quantity'
         ));
     }
+    public function processing(Request $request, $id)
+{
+    $product = collect($this->products())
+        ->firstWhere('id', (int) $id);
+
+    abort_if(!$product, 404);
+
+    $quantity = max(1, min(
+        8,
+        (int) $request->query('quantity', 1)
+    ));
+
+    $method = $request->query('method', 'qris');
+
+    abort_unless(
+        in_array($method, ['qris', 'va'], true),
+        404
+    );
+
+    $total = $product['price'] * $quantity;
+
+    // Nomor pesanan contoh untuk simulasi UI.
+    $orderNumber = 'A-024';
+
+    return view('payment.processing', compact(
+        'product',
+        'quantity',
+        'method',
+        'total',
+        'orderNumber'
+    ));
+}
 }

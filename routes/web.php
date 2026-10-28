@@ -21,3 +21,8 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
 
 Route::get('/checkout/{id}', [ProductController::class, 'checkout'])
     ->name('checkout.show');
+
+Route::get('/payment/processing/{id}', [
+    ProductController::class,
+    'processing'
+    ])->name('payment.processing');

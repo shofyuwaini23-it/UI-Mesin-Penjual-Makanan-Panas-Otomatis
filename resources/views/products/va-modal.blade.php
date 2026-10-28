@@ -211,14 +211,16 @@
     }
 
     function simulateVaSuccess() {
-        clearInterval(vaInterval);
+    clearInterval(vaInterval);
 
-        const status = document.getElementById('vaStatus');
-        status.className = 'qris-status';
-        status.style.display = 'block';
-        status.textContent =
-            'Simulasi berhasil! Ini hanya demonstrasi UI, bukan konfirmasi pembayaran sungguhan.';
-    }
+    const url = "{{ route('payment.processing', ['id' => $selectedProduct['id']]) }}";
+    const params = new URLSearchParams({
+        quantity: "{{ $quantity }}",
+        method: "va"
+    });
+
+    window.location.href = url + "?" + params.toString();
+}
 
     updateVaTimer();
     vaInterval = setInterval(updateVaTimer, 1000);

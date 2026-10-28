@@ -110,14 +110,16 @@
     }
 
     function simulateQrisSuccess() {
-        clearInterval(qrisInterval);
+    clearInterval(qrisInterval);
 
-        const status = document.getElementById('qrisStatus');
-        status.className = 'qris-status';
-        status.style.display = 'block';
-        status.textContent =
-            'Simulasi berhasil! Ini hanya demonstrasi UI, bukan konfirmasi pembayaran sungguhan.';
-    }
+    const url = "{{ route('payment.processing', ['id' => $selectedProduct['id']]) }}";
+    const params = new URLSearchParams({
+        quantity: "{{ $quantity }}",
+        method: "qris"
+    });
+
+    window.location.href = url + "?" + params.toString();
+}
 
     updateQrisTimer();
     qrisInterval = setInterval(updateQrisTimer, 1000);
