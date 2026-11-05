@@ -100,6 +100,65 @@
         .success-icon svg {
             width: 112px;
             height: 112px;
+            overflow: visible;
+        }
+
+        /* Animasi ilustrasi pesanan selesai */
+        .success-circle {
+            stroke-dasharray: 185;
+            stroke-dashoffset: 185;
+            animation: drawCircle 1.2s ease forwards;
+        }
+
+        .success-check {
+            stroke-dasharray: 65;
+            stroke-dashoffset: 65;
+            animation: drawCheck 0.7s ease forwards 0.8s;
+        }
+
+        .success-accent {
+            opacity: 0;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: accentAppear 0.5s ease forwards;
+        }
+
+        .accent-orange {
+            animation-delay: 1.1s;
+        }
+
+        .accent-yellow {
+            animation-delay: 1.3s;
+        }
+
+        .accent-green {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes drawCircle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes accentAppear {
+            0% {
+                opacity: 0;
+                scale: 0;
+                rotate: -30deg;
+            }
+
+            100% {
+                opacity: 1;
+                scale: 1;
+                rotate: 0deg;
+            }
         }
 
         .badge {
@@ -332,26 +391,50 @@
     </header>
 
     <main>
+        <!-- Ilustrasi pesanan selesai -->
         <div class="success-icon">
-            <svg viewBox="0 0 100 100" fill="none"
+            <svg viewBox="0 0 100 100"
+                 fill="none"
                  xmlns="http://www.w3.org/2000/svg"
                  aria-label="Pesanan berhasil">
-                <circle cx="50" cy="50" r="38"
-                        stroke="#292522" stroke-width="2.5"
+
+                <!-- Lingkaran terbuka -->
+                <circle class="success-circle"
+                        cx="50"
+                        cy="50"
+                        r="38"
+                        stroke="#292522"
+                        stroke-width="2.5"
                         stroke-dasharray="185 55"
                         stroke-linecap="round"/>
-                <path d="M30 50 L43 63 L76 30"
-                      stroke="#292522" stroke-width="3"
+
+                <!-- Centang -->
+                <path class="success-check"
+                      d="M30 50 L43 63 L76 30"
+                      stroke="#292522"
+                      stroke-width="3"
                       stroke-linecap="round"
                       stroke-linejoin="round"/>
-                <path d="M84 11 L80 19"
-                      stroke="#ffc13d" stroke-width="7"
+
+                <!-- Aksen kuning -->
+                <path class="success-accent accent-yellow"
+                      d="M84 11 L80 19"
+                      stroke="#ffc13d"
+                      stroke-width="7"
                       stroke-linecap="round"/>
-                <path d="M13 79 L17 86"
-                      stroke="#168b61" stroke-width="6"
+
+                <!-- Aksen hijau -->
+                <path class="success-accent accent-green"
+                      d="M13 79 L17 86"
+                      stroke="#168b61"
+                      stroke-width="6"
                       stroke-linecap="round"/>
-                <path d="M8 21 L12 17"
-                      stroke="#f4511e" stroke-width="5"
+
+                <!-- Aksen oranye -->
+                <path class="success-accent accent-orange"
+                      d="M8 21 L12 17"
+                      stroke="#f4511e"
+                      stroke-width="5"
                       stroke-linecap="round"/>
             </svg>
         </div>
@@ -367,6 +450,7 @@
             Terima kasih. Pesanan Anda sudah berada di laci bagian bawah.
         </p>
 
+        <!-- Petunjuk pengambilan -->
         <section class="pickup-card">
             <div class="pickup-icon">
                 <svg viewBox="0 0 24 24" fill="none"
@@ -383,6 +467,7 @@
 
             <div class="pickup-text">
                 <h2>Ambil di laci bagian bawah</h2>
+
                 <p>
                     Tunggu bunyi notifikasi dan lampu hijau
                     sebelum membuka laci.
@@ -392,11 +477,13 @@
             <div class="pickup-arrow" aria-hidden="true">↓</div>
         </section>
 
+        <!-- Kartu terima kasih -->
         <section class="thankyou-card">
             <h2>Terima Kasih!</h2>
             <p>Semoga hari Anda menyenangkan :)</p>
         </section>
 
+        <!-- Hitung mundur -->
         <p class="redirect-note">
             Kembali ke katalog dalam
             <span class="countdown" id="countdown">10</span>

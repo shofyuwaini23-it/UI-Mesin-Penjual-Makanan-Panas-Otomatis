@@ -1,9 +1,5 @@
-
 <div class="modal-header">
     <div>
-        <p style="margin:0 0 6px;color:#f4511e;font-size:12px;font-weight:bold">
-            LANGKAH 3 DARI 3
-        </p>
         <h2>Pembayaran Virtual Account</h2>
     </div>
     <button class="close" type="button" onclick="closeModal()">×</button>
@@ -11,8 +7,8 @@
 
 <div class="qris-total">
     <small>TOTAL PEMBAYARAN</small>
-    <h2>Rp {{ number_format($selectedProduct['price'] * $quantity, 0, ',', '.') }}</h2>
-    <p>{{ $quantity }} × {{ $selectedProduct['name'] }}</p>
+    <h2>Rp {{ number_format($product['price'] * $quantity, 0, ',', '.') }}</h2>
+    <p>{{ $quantity }} × {{ $product['name'] }}</p>
 </div>
 
 <div class="va-payment-card">
@@ -27,7 +23,6 @@
 
 <div class="va-number-box">
     <strong id="vaNumber">8808123456789012</strong>
-    <button type="button" onclick="copyVaNumber()">Salin</button>
 </div>
 
 <p id="vaCopyStatus" class="va-copy-status" role="status"></p>
@@ -54,11 +49,7 @@
 </p>
 
 <div id="vaStatus" class="qris-status" role="status"></div>
-
 <div class="qris-actions">
-    <button type="button" class="qris-cancel" onclick="backToPayment()">
-        ← Kembali
-    </button>
     <button type="button" class="qris-success" onclick="simulateVaSuccess()">
         Simulasikan Pembayaran
     </button>
@@ -107,16 +98,16 @@
     .va-number-box {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 10px;
         padding: 14px;
         border: 1px dashed #f4511e;
-        border-radius: 12px;
+        border-radius: 15px;
         background: white;
     }
 
     .va-number-box strong {
-        font-size: 18px;
+        font-size: 20px;
         letter-spacing: 1px;
         overflow-wrap: anywhere;
     }
@@ -165,6 +156,7 @@
 
     function updateVaTimer() {
         const timer = document.getElementById('vaTimer');
+
         if (!timer) return;
 
         const minutes = Math.floor(vaRemaining / 60);
@@ -177,11 +169,15 @@
         if (vaRemaining <= 0) {
             clearInterval(vaInterval);
 
+            timer.textContent = '00:00';
+
             const status = document.getElementById('vaStatus');
+
             status.className = 'qris-status error';
             status.style.display = 'block';
             status.textContent =
                 'Waktu simulasi habis. Kembali ke pilihan metode pembayaran untuk mencoba lagi.';
+
             return;
         }
 
@@ -206,21 +202,25 @@
     }
 
     function backToPayment() {
-        window.location.href = @json(route('products.show', $selectedProduct['id'])) +
-            '?step=payment&quantity={{ $quantity }}';
+        window.location.href =
+            @json(route('checkout.show', $product['id'])) +
+            '?quantity=' + @json($quantity);
     }
 
     function simulateVaSuccess() {
-    clearInterval(vaInterval);
+        clearInterval(vaInterval);
 
-    const url = "{{ route('payment.processing', ['id' => $selectedProduct['id']]) }}";
-    const params = new URLSearchParams({
-        quantity: "{{ $quantity }}",
-        method: "va"
-    });
+        const url = @json(route('payment.processing', [
+            'id' => $product['id']
+        ]));
 
-    window.location.href = url + "?" + params.toString();
-}
+        const params = new URLSearchParams({
+            quantity: @json($quantity),
+            method: 'va'
+        });
+
+        window.location.href = url + '?' + params.toString();
+    }
 
     updateVaTimer();
     vaInterval = setInterval(updateVaTimer, 1000);

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
@@ -16,11 +17,10 @@ Route::get('/products/{id}', [ProductController::class, 'show'])
 Route::get('/checkout/{id}', [ProductController::class, 'checkout'])
     ->name('checkout.show');
 
-Route::get('/payment/processing/{id}', [
-    ProductController::class,
-    'processing'
-    ])->name('payment.processing');
+Route::get('/payment/processing/{id}', [ProductController::class, 'processing'])
+    ->name('payment.processing');
 
+// Halaman otomatis setelah pembayaran dan saat pesanan selesai.
 Route::get('/orders/status/{id}', [ProductController::class, 'status'])
     ->name('orders.status');
 

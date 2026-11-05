@@ -1,9 +1,5 @@
-
 <div class="modal-header">
     <div>
-        <p style="margin:0 0 6px;color:#f4511e;font-size:12px;font-weight:bold">
-            LANGKAH 3 DARI 3
-        </p>
         <h2>Pembayaran QRIS</h2>
     </div>
 
@@ -12,8 +8,8 @@
 
 <div class="qris-total">
     <small>TOTAL PEMBAYARAN</small>
-    <h2>Rp {{ number_format($selectedProduct['price'] * $quantity, 0, ',', '.') }}</h2>
-    <p>{{ $quantity }} × {{ $selectedProduct['name'] }}</p>
+    <h2>Rp {{ number_format($product['price'] * $quantity, 0, ',', '.') }}</h2>
+    <p>{{ $quantity }} × {{ $product['name'] }}</p>
 </div>
 
 <div class="qris-timer">
@@ -63,11 +59,6 @@
 <div id="qrisStatus" class="qris-status" role="status"></div>
 
 <div class="qris-actions">
-    <button type="button" class="qris-cancel"
-            onclick="backToPayment()">
-        ← Kembali
-    </button>
-
     <button type="button" class="qris-success"
             onclick="simulateQrisSuccess()">
         Simulasikan Pembayaran
@@ -80,6 +71,7 @@
 
     function updateQrisTimer() {
         const timer = document.getElementById('qrisTimer');
+
         if (!timer) return;
 
         const minutes = Math.floor(qrisRemaining / 60);
@@ -91,13 +83,16 @@
 
         if (qrisRemaining <= 0) {
             clearInterval(qrisInterval);
+
             timer.textContent = '00:00';
 
             const status = document.getElementById('qrisStatus');
+
             status.className = 'qris-status error';
             status.style.display = 'block';
             status.textContent =
                 'Waktu simulasi habis. Kembali ke pilihan metode pembayaran untuk mencoba lagi.';
+
             return;
         }
 
@@ -105,21 +100,25 @@
     }
 
     function backToPayment() {
-        window.location.href = @json(route('products.show', $selectedProduct['id'])) +
-            '?step=payment&quantity={{ $quantity }}';
+        window.location.href =
+            @json(route('checkout.show', $product['id'])) +
+            '?quantity=' + @json($quantity);
     }
 
     function simulateQrisSuccess() {
-    clearInterval(qrisInterval);
+        clearInterval(qrisInterval);
 
-    const url = "{{ route('payment.processing', ['id' => $selectedProduct['id']]) }}";
-    const params = new URLSearchParams({
-        quantity: "{{ $quantity }}",
-        method: "qris"
-    });
+        const url = @json(route('payment.processing', [
+            'id' => $product['id']
+        ]));
 
-    window.location.href = url + "?" + params.toString();
-}
+        const params = new URLSearchParams({
+            quantity: @json($quantity),
+            method: 'qris'
+        });
+
+        window.location.href = url + '?' + params.toString();
+    }
 
     updateQrisTimer();
     qrisInterval = setInterval(updateQrisTimer, 1000);
