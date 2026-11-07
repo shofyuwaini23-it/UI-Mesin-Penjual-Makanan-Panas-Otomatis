@@ -69,6 +69,36 @@ class ProductController extends Controller
                     'protein' => 25,
                 ],
             ],
+            [
+    'id' => 5,
+    'name' => 'Mie Tarempa Ikan',
+    'price' => 23000,
+    'category' => 'makanan',
+    'recommended' => true,
+    'image' => 'https://www.finnafood.com/blog/wp-content/uploads/2024/07/resep-mie-tarempa.jpg',
+    'description' => 'Mie pipih khas Tarempa dengan tambahan ikan, tauge, telur, daun bawang, dan bumbu gurih khas Tarempa.',
+    'nutrition' => [
+        'kalori' => 460,
+        'karbohidrat' => 65,
+        'lemak' => 14,
+        'protein' => 22,
+    ],
+],
+[
+    'id' => 6,
+    'name' => 'Luti Gendang',
+    'price' => 10000,
+    'category' => 'snack',
+    'recommended' => true,
+    'image' => 'https://cdn.digitaldesa.id/uploads/marketplace/products/285abb9eb3d31f9548a116d99ac11071.jpg',
+    'description' => 'Roti goreng khas Kepulauan Riau dengan isian abon ikan berbumbu gurih.',
+    'nutrition' => [
+        'kalori' => 250,
+        'karbohidrat' => 35,
+        'lemak' => 9,
+        'protein' => 8,
+    ],
+],
         ];
     }
 
