@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
     <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/recommendation.css') }}">
 </head>
 
 <body>
@@ -44,6 +45,8 @@
         updateClock();
         setInterval(updateClock, 60000);
     </script>
+
+    <script src="{{ asset('js/recommendation.js') }}"></script>
 
     <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 

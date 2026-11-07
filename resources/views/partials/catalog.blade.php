@@ -186,6 +186,8 @@
 
 </main>
 
+{{-- KOMPONEN REKOMENDASI AI --}}
+@include('partials.recommendation.popup')
 
 {{-- FOOTER FIXED --}}
 <footer class="kiosk-footer">
