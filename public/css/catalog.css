@@ -805,3 +805,48 @@ body.modal-open {
         height: 170px;
     }
 }
+
+/* FOOTER HOTMEAL - WARNA ASLI */
+
+.kiosk-screen .kiosk-footer {
+    position: relative !important;
+    inset: auto !important;
+
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 75px;
+
+    margin-top: 0;
+    padding: 12px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* Warna asli footer */
+    background: #432718;
+    color: #fff3e4;
+
+    border-top: none;
+
+    z-index: 10;
+}
+
+/* ITEM FOOTER */
+.kiosk-screen .kiosk-footer .footer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* KETERANGAN */
+.kiosk-screen .kiosk-footer .footer-item small {
+    display: block;
+    color: #e0c5ac;
+}
+
+/* TEKS UTAMA */
+.kiosk-screen .kiosk-footer .footer-item b {
+    display: block;
+    color: #fff3e4;
+}

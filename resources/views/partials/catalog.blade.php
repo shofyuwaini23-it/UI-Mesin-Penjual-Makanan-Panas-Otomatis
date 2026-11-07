@@ -1,5 +1,7 @@
+
 {{-- HEADER --}}
-<header>
+<header class="kiosk-header">
+
     <div>
         <div class="brand">
             <img
@@ -28,6 +30,7 @@
     </div>
 
     <div class="header-info">
+
         <div class="wifi">
             <img
                 src="{{ asset('images/icons/icon-wifi.svg') }}"
@@ -40,12 +43,14 @@
 
         <div class="date" id="date"></div>
         <div id="time"></div>
+
     </div>
+
 </header>
 
 
 {{-- KONTEN KATALOG --}}
-<main class="container">
+<main class="container kiosk-content">
 
     <h1>Smart Kiosk</h1>
 
@@ -60,6 +65,7 @@
         method="GET"
         action="{{ route('products.index') }}"
     >
+
         <input
             type="text"
             name="search"
@@ -77,6 +83,7 @@
         <button type="submit">
             Cari
         </button>
+
     </form>
 
 
@@ -180,8 +187,8 @@
 </main>
 
 
-{{-- FOOTER --}}
-<footer>
+{{-- FOOTER FIXED --}}
+<footer class="kiosk-footer">
 
     <div class="footer-item">
 
@@ -199,6 +206,7 @@
     </div>
 
     <div class="footer-item">
+
         <img
             src="{{ asset('images/icons/icon-location.svg') }}"
             alt="Lokasi"
@@ -209,5 +217,7 @@
             <small>Lokasi mesin</small>
             <b>Politeknik Negeri Batam · Gedung Tower A</b>
         </div>
+
     </div>
+
 </footer>

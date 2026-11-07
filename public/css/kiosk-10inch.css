@@ -1,4 +1,7 @@
-/* TAREMPA - Simulasi Kiosk 10 Inch */
+
+/* =========================================
+   TAREMPA - SIMULASI KIOSK 10 INCH
+========================================= */
 
 :root {
     --kiosk-width: 746px;
@@ -13,6 +16,7 @@ html,
 body {
     margin: 0;
     width: 100%;
+    height: 100%;
     min-height: 100%;
 }
 
@@ -22,35 +26,119 @@ body {
     font-family: Inter, Arial, sans-serif;
 }
 
-/* Area pembungkus yang berada di tengah monitor */
+/* =========================================
+   AREA PEMBUNGKUS KIOSK
+========================================= */
+
 .kiosk-stage {
     position: fixed;
     inset: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
     background: #292929;
 }
 
-/* Kanvas asli: ukurannya selalu 746 x 1280 px */
+/* =========================================
+   KANVAS KIOSK 746 x 1280
+========================================= */
+
 .kiosk-screen {
     position: absolute;
     top: 50%;
     left: 50%;
+
     width: var(--kiosk-width);
     height: var(--kiosk-height);
+
     min-width: var(--kiosk-width);
     min-height: var(--kiosk-height);
-    overflow-x: hidden;
-    overflow-y: auto;
+
+    /* PENTING: Gunakan Flexbox */
+    display: flex;
+    flex-direction: column;
+
+    /* Jangan scroll seluruh kanvas */
+    overflow: hidden;
+
     transform-origin: center center;
+
     background: #fff7ec;
     color: #39291e;
+
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Pastikan konten halaman mengikuti lebar kanvas */
+/* =========================================
+   HEADER TETAP DI ATAS
+========================================= */
+
+.kiosk-screen .kiosk-header {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+/* =========================================
+   AREA KONTEN YANG BISA DI-SCROLL
+========================================= */
+
+.kiosk-screen .kiosk-content {
+    flex: 1 1 auto;
+
+    min-height: 0;
+    width: 100%;
+    max-width: 746px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-bottom: 20px;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================
+   FOOTER TETAP DI BAWAH KANVAS
+========================================= */
+
+.kiosk-screen .kiosk-footer {
+    position: relative !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    flex: 0 0 auto;
+
+    width: 100%;
+    min-height: 75px;
+
+    margin-top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 24px;
+
+    background: #fff7ec;
+
+    border-top: 1px solid #e8d9c8;
+
+    z-index: 10;
+}
+
+/* =========================================
+   LEBAR KONTEN
+========================================= */
+
 .kiosk-screen .container,
 .kiosk-screen .kiosk,
 .kiosk-screen .checkout {
@@ -59,12 +147,18 @@ body {
     margin-right: auto;
 }
 
-/* Kartu katalog dua kolom */
+/* =========================================
+   KATALOG DUA KOLOM
+========================================= */
+
 .kiosk-screen .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-/* Kontrol sentuh */
+/* =========================================
+   KONTROL SENTUH
+========================================= */
+
 .kiosk-screen button,
 .kiosk-screen a,
 .kiosk-screen input,
@@ -72,17 +166,27 @@ body {
     touch-action: manipulation;
 }
 
-/* Gambar tidak melebar melewati elemen */
+/* =========================================
+   GAMBAR
+========================================= */
+
 .kiosk-screen img {
     max-width: 100%;
 }
 
-/* Scrollbar kanvas */
-.kiosk-screen::-webkit-scrollbar {
+/* =========================================
+   SCROLLBAR KONTEN KATALOG
+========================================= */
+
+.kiosk-screen .kiosk-content::-webkit-scrollbar {
     width: 6px;
 }
 
-.kiosk-screen::-webkit-scrollbar-thumb {
+.kiosk-screen .kiosk-content::-webkit-scrollbar-thumb {
     background: #d6c5b5;
     border-radius: 8px;
+}
+
+.kiosk-screen .kiosk-content::-webkit-scrollbar-track {
+    background: transparent;
 }
