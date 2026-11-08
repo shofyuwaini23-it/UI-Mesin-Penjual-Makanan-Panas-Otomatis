@@ -102,7 +102,7 @@ function showRecommendationLoading() {
             recommendationLoadingPage.style.display = 'none';
         }
 
-        showRecommendationResul(true); // Ganti true dengan false jika tidak ada rekomendasi
+        showRecommendationResult(true);
 
     }, 3000);
 
