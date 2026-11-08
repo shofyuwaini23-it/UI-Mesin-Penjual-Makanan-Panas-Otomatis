@@ -213,8 +213,8 @@ footer {
     justify-content: space-between;
     gap: 24px;
     padding: 22px 5%;
-    background: #432718;
-    color: #fff3e4;
+    background: #3D2314 !important;
+    color: #FFFFFF !important;
 }
 
 .footer-item {
@@ -226,7 +226,7 @@ footer {
 footer small {
     display: block;
     margin-bottom: 6px;
-    color: #e0c5ac;
+    color: #FFFFFF !important;
 }
 
 footer b {
@@ -740,7 +740,7 @@ body.modal-open {
         font-size: 13px;
     }
 
-    footer {
+footer {
         padding: 18px 5%;
         gap: 12px;
     }
@@ -807,28 +807,22 @@ body.modal-open {
 }
 
 /* FOOTER HOTMEAL - WARNA ASLI */
-
 .kiosk-screen .kiosk-footer {
     position: relative !important;
     inset: auto !important;
-
     flex-shrink: 0;
     width: 100%;
     min-height: 75px;
-
     margin-top: 0;
     padding: 12px 24px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     /* Warna asli footer */
-    background: #432718;
-    color: #fff3e4;
-
-    border-top: none;
-
+    background: #3D2314 !important;
+    color: #FFFFFF !important;
+    border-top: none !important;
     z-index: 10;
 }
 
@@ -842,11 +836,365 @@ body.modal-open {
 /* KETERANGAN */
 .kiosk-screen .kiosk-footer .footer-item small {
     display: block;
-    color: #e0c5ac;
+    color: #FFFFFF !important;
 }
 
 /* TEKS UTAMA */
 .kiosk-screen .kiosk-footer .footer-item b {
     display: block;
-    color: #fff3e4;
+    color: #FFFFFF !important;
+}
+
+/* =========================================
+   HOTMEAL - ORANGE THEME OVERRIDE
+   Tambahkan di bagian paling bawah catalog.css
+========================================= */
+:root {
+    --hotmeal-primary: #F15A24;
+    --hotmeal-primary-hover: #D94816;
+    --hotmeal-orange-light: #FFE1CE;
+    --hotmeal-orange-soft: #FFF0E6;
+    --hotmeal-background: #FFF3E8;
+    --hotmeal-surface: #FFFFFF;
+    --hotmeal-text: #211F1C;
+    --hotmeal-muted: #74665D;
+    --hotmeal-border: #F3D6C5;
+}
+
+/* BACKGROUND DAN TEKS UTAMA */
+body {
+    background: var(--hotmeal-background) !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.container {
+    color: var(--hotmeal-text);
+}
+
+.subtitle,
+.description {
+    color: var(--hotmeal-muted) !important;
+}
+
+/* HEADER */
+header {
+    border-bottom-color: var(--hotmeal-border) !important;
+    background: var(--hotmeal-background);
+}
+
+.brand small {
+    color: var(--hotmeal-primary) !important;
+}
+
+/* SEARCH */
+.search input {
+    border-color: var(--hotmeal-border) !important;
+    background: #fff;
+    color: var(--hotmeal-text);
+}
+
+.search input:focus {
+    outline: 2px solid var(--hotmeal-orange-light);
+    border-color: var(--hotmeal-primary) !important;
+}
+
+.search button {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.search button:hover {
+    background: var(--hotmeal-primary-hover) !important;
+}
+
+/* FILTER KATEGORI */
+.filters a {
+    border-color: var(--hotmeal-border) !important;
+    background: #fff !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.filters a:hover,
+.filters a.active {
+    border-color: var(--hotmeal-primary) !important;
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+/* KARTU PRODUK */
+.card {
+    background: var(--hotmeal-surface) !important;
+    box-shadow: 0 5px 16px rgba(241, 90, 36, 0.10) !important;
+}
+
+.category {
+    color: var(--hotmeal-muted) !important;
+}
+
+.card h2 {
+    color: var(--hotmeal-text);
+}
+
+.card-price,
+.price {
+    color: var(--hotmeal-primary) !important;
+}
+
+.detail-link {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.detail-link:hover {
+    background: var(--hotmeal-primary-hover) !important;
+}
+
+/* FOOTER */
+footer {
+    background: #3D2314 !important;
+    color: #FFFFFF !important;
+}
+
+footer small {
+    color: #FFFFFF !important;
+}
+
+footer b {
+    color: #FFFFFF !important;
+}
+
+/* FOOTER KHUSUS KIOSK */
+.kiosk-screen .kiosk-footer {
+    background: #3D2314 !important;
+    color: #FFFFFF !important;
+    border-top: none !important;
+}
+
+.kiosk-screen .kiosk-footer .footer-item small {
+    color: #FFFFFF !important;
+}
+
+.kiosk-screen .kiosk-footer .footer-item b {
+    color: #FFFFFF !important;
+}
+
+/* MODAL DETAIL PRODUK */
+.modal {
+    border-color: var(--hotmeal-border) !important;
+    background: var(--hotmeal-background) !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.modal-header h2,
+.product-info h3 {
+    color: var(--hotmeal-text);
+}
+
+.close {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-primary) !important;
+}
+
+.close:hover {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.stock {
+    color: var(--hotmeal-muted) !important;
+}
+
+/* INFORMASI NUTRISI */
+.nutrition {
+    border-color: var(--hotmeal-border) !important;
+    background: #FFF8F3 !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.nutrition small,
+.nutrition-heading,
+.nutrition-item span {
+    color: var(--hotmeal-muted) !important;
+}
+
+.nutrition-item {
+    border-color: var(--hotmeal-border) !important;
+    background: #fff !important;
+}
+
+.nutrition-item b {
+    color: var(--hotmeal-text) !important;
+}
+
+.nutrition-empty {
+    background: var(--hotmeal-orange-soft) !important;
+    color: var(--hotmeal-muted) !important;
+}
+
+/* JUMLAH PRODUK */
+.quantity {
+    background: var(--hotmeal-orange-soft) !important;
+}
+
+.quantity button {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-primary) !important;
+}
+
+.quantity button:hover {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.quantity .plus {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.quantity .plus:hover {
+    background: var(--hotmeal-primary-hover) !important;
+}
+
+/* TOMBOL BELI DAN LANJUTKAN */
+.buy,
+.continue {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.buy:hover,
+.continue:hover {
+    background: var(--hotmeal-primary-hover) !important;
+}
+
+/* KONFIRMASI PESANAN */
+.confirm-quantity {
+    border-bottom-color: var(--hotmeal-border) !important;
+    color: var(--hotmeal-muted) !important;
+}
+
+.confirm-quantity b {
+    color: var(--hotmeal-primary) !important;
+}
+
+.total-box {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.total-box h2 {
+    color: var(--hotmeal-primary) !important;
+}
+
+.total-box p {
+    color: var(--hotmeal-muted) !important;
+}
+
+.edit-button {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-primary-hover) !important;
+}
+
+.edit-button:hover {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+/* PILIHAN PEMBAYARAN */
+.payment-option {
+    border-color: var(--hotmeal-border) !important;
+    background: #fff !important;
+    color: var(--hotmeal-text) !important;
+}
+
+.payment-option.qris {
+    background: #211F1C !important;
+    color: #fff !important;
+}
+
+.payment-icon {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.payment-icon.va-icon {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-primary) !important;
+}
+
+.payment-arrow {
+    color: var(--hotmeal-primary) !important;
+}
+
+.back-payment {
+    color: var(--hotmeal-primary-hover) !important;
+}
+
+/* PEMBAYARAN QRIS */
+.qris-total {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.qris-timer {
+    background: var(--hotmeal-orange-soft) !important;
+}
+
+.qris-timer strong {
+    color: var(--hotmeal-primary) !important;
+}
+
+.qris-code svg {
+    border-color: var(--hotmeal-border) !important;
+}
+
+.qris-note {
+    color: var(--hotmeal-muted) !important;
+}
+
+.qris-cancel {
+    background: var(--hotmeal-orange-light) !important;
+    color: var(--hotmeal-primary-hover) !important;
+}
+
+.qris-cancel:hover {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.qris-success {
+    background: var(--hotmeal-primary) !important;
+    color: #fff !important;
+}
+
+.qris-success:hover {
+    background: var(--hotmeal-primary-hover) !important;
+}
+
+/* STATUS PEMBAYARAN */
+.qris-status {
+    background: #DDF5E9 !important;
+    color: #17865B !important;
+}
+
+.qris-status.error {
+    background: #FFF0E6 !important;
+    color: #C94212 !important;
+}
+
+/* EMPTY STATE */
+.empty {
+    color: var(--hotmeal-muted) !important;
+}
+
+/* SCROLLBAR KIOSK - DISEMBUNYIKAN, SCROLL TETAP AKTIF */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer dan Edge lama */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, dan Edge */
+    width: 0;
+    height: 0;
 }

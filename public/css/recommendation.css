@@ -1,7 +1,20 @@
 
 /* =====================================
    HOTMEAL - REKOMENDASI AI
+   TEMA ORANGE
 ===================================== */
+
+:root {
+    --hotmeal-orange: #F15A24;
+    --hotmeal-orange-dark: #D94816;
+    --hotmeal-orange-light: #FFE1CE;
+    --hotmeal-orange-soft: #FFF0E6;
+    --hotmeal-cream: #FFF3E8;
+    --hotmeal-white: #FFFFFF;
+    --hotmeal-dark: #211F1C;
+    --hotmeal-muted: #82766B;
+    --hotmeal-border: #F3D6C5;
+}
 
 /* POP-UP UTAMA */
 
@@ -13,7 +26,7 @@
     align-items: center;
     justify-content: center;
     padding: 25px;
-    background: rgba(33, 27, 23, 0.68);
+    background: rgba(33, 31, 28, 0.68);
     backdrop-filter: blur(5px);
 }
 
@@ -29,9 +42,9 @@
     max-width: 680px;
     min-height: 400px;
     padding: 35px;
-    border: 1px solid #eddfcf;
+    border: 1px solid var(--hotmeal-border);
     border-radius: 24px;
-    background: #fff7ec;
+    background: var(--hotmeal-cream);
     box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
     animation: recommendationAppear 0.3s ease;
 }
@@ -53,7 +66,7 @@
 .recommendation-label {
     display: inline-block;
     margin-bottom: 10px;
-    color: #f4511e;
+    color: var(--hotmeal-orange);
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 1.2px;
@@ -63,14 +76,14 @@
 .calorie-step h2,
 .nutrition-step h2 {
     margin: 10px 0 12px;
-    color: #432718;
+    color: var(--hotmeal-dark);
     font-size: 25px;
     line-height: 1.35;
 }
 
 .recommendation-content > p {
     margin: 0 0 18px;
-    color: #82766b;
+    color: var(--hotmeal-muted);
     font-size: 14px;
     line-height: 1.7;
 }
@@ -90,7 +103,7 @@
     height: 100px;
     margin-bottom: 20px;
     border-radius: 22px;
-    background: #ffe5c6;
+    background: var(--hotmeal-orange-light);
 }
 
 .recommendation-icon span {
@@ -103,10 +116,10 @@
     gap: 9px;
     margin-bottom: 20px;
     padding: 13px;
-    border: 1px solid #eddfcf;
+    border: 1px solid var(--hotmeal-border);
     border-radius: 12px;
-    background: #fffaf4;
-    color: #432718;
+    background: #FFF8F3;
+    color: var(--hotmeal-dark);
     font-size: 13px;
     line-height: 1.5;
 }
@@ -130,22 +143,22 @@
 }
 
 .recommendation-yes {
-    background: #432718;
+    background: var(--hotmeal-orange);
     color: #fff;
 }
 
 .recommendation-yes:hover {
-    background: #5b3622;
+    background: var(--hotmeal-orange-dark);
 }
 
 .recommendation-no {
-    border: 1px solid #e3d8cd;
+    border: 1px solid var(--hotmeal-border);
     background: #fff;
-    color: #432718;
+    color: var(--hotmeal-orange);
 }
 
 .recommendation-no:hover {
-    background: #ffe5c6;
+    background: var(--hotmeal-orange-soft);
 }
 
 /* TOMBOL TUTUP */
@@ -159,8 +172,8 @@
     height: 35px;
     border: none;
     border-radius: 10px;
-    background: #ffe5c6;
-    color: #432718;
+    background: var(--hotmeal-orange-light);
+    color: var(--hotmeal-orange-dark);
     font-size: 25px;
     cursor: pointer;
 }
@@ -176,7 +189,7 @@
 
 .calorie-description {
     margin: 0 0 25px;
-    color: #82766b;
+    color: var(--hotmeal-muted);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -195,23 +208,23 @@
     gap: 10px;
     min-height: 155px;
     padding: 15px 8px;
-    border: 2px solid #eddfcf;
+    border: 2px solid var(--hotmeal-border);
     border-radius: 16px;
     background: #fff;
-    color: #432718;
+    color: var(--hotmeal-dark);
     cursor: pointer;
     transition: 0.2s;
 }
 
 .calorie-option:hover {
-    border-color: #f4511e;
-    background: #fffaf4;
+    border-color: var(--hotmeal-orange);
+    background: #FFF8F3;
 }
 
 .calorie-option.selected {
-    border-color: #f4511e;
-    background: #ffe9d8;
-    box-shadow: 0 4px 12px rgba(244, 81, 30, 0.12);
+    border-color: var(--hotmeal-orange);
+    background: var(--hotmeal-orange-soft);
+    box-shadow: 0 4px 12px rgba(241, 90, 36, 0.12);
 }
 
 .calorie-icon {
@@ -223,7 +236,7 @@
 }
 
 .calorie-option small {
-    color: #89766a;
+    color: var(--hotmeal-muted);
     font-size: 11px;
     line-height: 1.4;
     text-align: center;
@@ -233,7 +246,7 @@
 .nutrition-error {
     display: none;
     margin: 14px 0 0;
-    color: #c94212;
+    color: #C94212;
     font-size: 12px;
 }
 
@@ -263,25 +276,25 @@
 
 .calorie-back,
 .nutrition-back {
-    background: #ffe5c6;
-    color: #432718;
+    background: var(--hotmeal-orange-light);
+    color: var(--hotmeal-orange-dark);
 }
 
 .calorie-next,
 .nutrition-next {
-    background: #432718;
+    background: var(--hotmeal-orange);
     color: #fff;
 }
 
 .calorie-next:disabled,
 .nutrition-next:disabled {
-    background: #b8aaa0;
+    background: #B8AAA0;
     cursor: not-allowed;
 }
 
 .calorie-next:not(:disabled):hover,
 .nutrition-next:not(:disabled):hover {
-    background: #5b3622;
+    background: var(--hotmeal-orange-dark);
 }
 
 /* =====================================
@@ -295,7 +308,7 @@
 
 .nutrition-description {
     margin: 0 0 22px;
-    color: #82766b;
+    color: var(--hotmeal-muted);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -313,24 +326,24 @@
     gap: 9px;
     min-height: 145px;
     padding: 18px;
-    border: 2px solid #eddfcf;
+    border: 2px solid var(--hotmeal-border);
     border-radius: 16px;
     background: #fff;
-    color: #432718;
+    color: var(--hotmeal-dark);
     text-align: left;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .nutrition-option:hover {
-    border-color: #f4511e;
-    background: #fffaf4;
+    border-color: var(--hotmeal-orange);
+    background: #FFF8F3;
 }
 
 .nutrition-option.selected {
-    border-color: #f4511e;
-    background: #ffe9d8;
-    box-shadow: 0 4px 12px rgba(244, 81, 30, 0.12);
+    border-color: var(--hotmeal-orange);
+    background: var(--hotmeal-orange-soft);
+    box-shadow: 0 4px 12px rgba(241, 90, 36, 0.12);
 }
 
 .nutrition-icon {
@@ -342,48 +355,9 @@
 }
 
 .nutrition-option small {
-    color: #89766a;
+    color: var(--hotmeal-muted);
     font-size: 11px;
     line-height: 1.5;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 600px) {
-    .recommendation-modal {
-        min-height: auto;
-        padding: 25px 20px;
-    }
-
-    .recommendation-content h2,
-    .calorie-step h2,
-    .nutrition-step h2 {
-        font-size: 21px;
-    }
-
-    .calorie-options {
-        grid-template-columns: 1fr;
-    }
-
-    .calorie-option {
-        flex-direction: row;
-        justify-content: flex-start;
-        min-height: 75px;
-        padding: 12px 16px;
-    }
-
-    .calorie-option small {
-        margin-left: auto;
-        max-width: 120px;
-    }
-
-    .nutrition-options {
-        grid-template-columns: 1fr;
-    }
-
-    .nutrition-option {
-        min-height: 105px;
-    }
 }
 
 /* =====================================
@@ -395,7 +369,8 @@
     width: 100%;
 }
 
-.allergy-icon {
+.allergy-icon,
+.allergy-ingredients-icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -403,23 +378,26 @@
     height: 85px;
     margin: 8px 0 18px;
     border-radius: 20px;
-    background: #ffe5c6;
+    background: var(--hotmeal-orange-light);
 }
 
-.allergy-icon span {
+.allergy-icon span,
+.allergy-ingredients-icon span {
     font-size: 43px;
 }
 
-.allergy-step h2 {
+.allergy-step h2,
+.allergy-ingredients-step h2 {
     margin: 10px 0 12px;
-    color: #432718;
+    color: var(--hotmeal-dark);
     font-size: 25px;
     line-height: 1.35;
 }
 
-.allergy-description {
+.allergy-description,
+.allergy-ingredients-description {
     margin: 0 0 20px;
-    color: #82766b;
+    color: var(--hotmeal-muted);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -430,10 +408,10 @@
     gap: 12px;
     margin-bottom: 18px;
     padding: 15px;
-    border: 1px solid #eddfcf;
+    border: 1px solid var(--hotmeal-border);
     border-radius: 12px;
-    background: #fffaf4;
-    color: #432718;
+    background: #FFF8F3;
+    color: var(--hotmeal-dark);
     font-size: 13px;
     line-height: 1.5;
 }
@@ -455,10 +433,10 @@
     width: 100%;
     min-height: 68px;
     padding: 15px 18px;
-    border: 2px solid #eddfcf;
+    border: 2px solid var(--hotmeal-border);
     border-radius: 14px;
     background: #fff;
-    color: #432718;
+    color: var(--hotmeal-dark);
     text-align: left;
     font-size: 14px;
     cursor: pointer;
@@ -470,34 +448,38 @@
 }
 
 .allergy-option:hover {
-    border-color: #f4511e;
-    background: #fffaf4;
+    border-color: var(--hotmeal-orange);
+    background: #FFF8F3;
 }
 
 .allergy-option.selected {
-    border-color: #f4511e;
-    background: #ffe9d8;
-    box-shadow: 0 4px 12px rgba(244, 81, 30, 0.12);
+    border-color: var(--hotmeal-orange);
+    background: var(--hotmeal-orange-soft);
+    box-shadow: 0 4px 12px rgba(241, 90, 36, 0.12);
 }
 
-.allergy-error {
+.allergy-error,
+.ingredient-error {
     display: none;
     margin: 14px 0 0;
-    color: #c94212;
+    color: #C94212;
     font-size: 12px;
 }
 
-.allergy-error.show {
+.allergy-error.show,
+.ingredient-error.show {
     display: block;
 }
 
-.allergy-actions {
+.allergy-actions,
+.ingredient-actions {
     display: flex;
     gap: 12px;
     margin-top: 25px;
 }
 
-.allergy-actions button {
+.allergy-actions button,
+.ingredient-actions button {
     flex: 1;
     min-height: 48px;
     padding: 12px;
@@ -508,33 +490,26 @@
     cursor: pointer;
 }
 
-.allergy-back {
-    background: #ffe5c6;
-    color: #432718;
+.allergy-back,
+.ingredient-back {
+    background: var(--hotmeal-orange-light);
+    color: var(--hotmeal-orange-dark);
 }
 
-.allergy-next {
-    background: #432718;
+.allergy-next,
+.ingredient-save {
+    background: var(--hotmeal-orange);
     color: #fff;
 }
 
 .allergy-next:disabled {
-    background: #b8aaa0;
+    background: #B8AAA0;
     cursor: not-allowed;
 }
 
-.allergy-next:not(:disabled):hover {
-    background: #5b3622;
-}
-
-@media (max-width: 600px) {
-    .allergy-step h2 {
-        font-size: 21px;
-    }
-
-    .allergy-option {
-        font-size: 13px;
-    }
+.allergy-next:not(:disabled):hover,
+.ingredient-save:hover {
+    background: var(--hotmeal-orange-dark);
 }
 
 /* =====================================
@@ -544,35 +519,6 @@
 .allergy-ingredients-step {
     flex: 1;
     width: 100%;
-}
-
-.allergy-ingredients-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 85px;
-    height: 85px;
-    margin: 8px 0 18px;
-    border-radius: 20px;
-    background: #ffe5c6;
-}
-
-.allergy-ingredients-icon span {
-    font-size: 43px;
-}
-
-.allergy-ingredients-step h2 {
-    margin: 10px 0 12px;
-    color: #432718;
-    font-size: 25px;
-    line-height: 1.35;
-}
-
-.allergy-ingredients-description {
-    margin: 0 0 20px;
-    color: #82766b;
-    font-size: 14px;
-    line-height: 1.6;
 }
 
 .allergy-ingredients-list {
@@ -587,10 +533,10 @@
     gap: 10px;
     min-height: 65px;
     padding: 12px;
-    border: 2px solid #eddfcf;
+    border: 2px solid var(--hotmeal-border);
     border-radius: 13px;
     background: #fff;
-    color: #432718;
+    color: var(--hotmeal-dark);
     font-size: 14px;
     text-align: left;
     cursor: pointer;
@@ -602,70 +548,68 @@
 }
 
 .ingredient-option:hover {
-    border-color: #f4511e;
-    background: #fffaf4;
+    border-color: var(--hotmeal-orange);
+    background: #FFF8F3;
 }
 
 .ingredient-option.selected {
-    border-color: #f4511e;
-    background: #ffe9d8;
-    box-shadow: 0 4px 12px rgba(244, 81, 30, .12);
+    border-color: var(--hotmeal-orange);
+    background: var(--hotmeal-orange-soft);
+    box-shadow: 0 4px 12px rgba(241, 90, 36, .12);
 }
 
 .ingredient-selected-info {
     margin: 18px 0 0;
-    color: #82766b;
+    color: var(--hotmeal-muted);
     font-size: 12px;
 }
 
-.ingredient-error {
-    display: none;
-    margin: 10px 0 0;
-    color: #c94212;
-    font-size: 12px;
-}
-
-.ingredient-error.show {
-    display: block;
-}
-
-.ingredient-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.ingredient-actions button {
-    flex: 1;
-    min-height: 48px;
-    padding: 12px;
-    border: 0;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.ingredient-back {
-    background: #ffe5c6;
-    color: #432718;
-}
-
-.ingredient-save {
-    background: #432718;
-    color: #fff;
-}
-
-.ingredient-save:hover {
-    background: #5b3622;
-}
+/* RESPONSIVE */
 
 @media (max-width: 600px) {
+    .recommendation-modal {
+        min-height: auto;
+        padding: 25px 20px;
+    }
+
+    .recommendation-content h2,
+    .calorie-step h2,
+    .nutrition-step h2 {
+        font-size: 21px;
+    }
+
+    .allergy-step h2,
     .allergy-ingredients-step h2 {
         font-size: 21px;
     }
 
+    .calorie-options {
+        grid-template-columns: 1fr;
+    }
+
+    .calorie-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        min-height: 75px;
+        padding: 12px 16px;
+    }
+
+    .calorie-option small {
+        margin-left: auto;
+        max-width: 120px;
+    }
+
+    .nutrition-options,
+    .allergy-ingredients-list {
+        grid-template-columns: 1fr;
+    }
+
+    .nutrition-option {
+        min-height: 105px;
+    }
+
+    .allergy-option,
     .ingredient-option {
-        font-size: 12px;
+        font-size: 13px;
     }
 }

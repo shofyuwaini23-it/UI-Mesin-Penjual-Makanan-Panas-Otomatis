@@ -57,17 +57,14 @@ body {
     min-width: var(--kiosk-width);
     min-height: var(--kiosk-height);
 
-    /* PENTING: Gunakan Flexbox */
     display: flex;
     flex-direction: column;
-
-    /* Jangan scroll seluruh kanvas */
     overflow: hidden;
 
     transform-origin: center center;
 
-    background: #fff7ec;
-    color: #39291e;
+    background: #FFF3E8;
+    color: #211F1C;
 
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
 }
@@ -109,14 +106,12 @@ body {
 
 .kiosk-screen .kiosk-footer {
     position: relative !important;
-
     top: auto !important;
     right: auto !important;
     bottom: auto !important;
     left: auto !important;
 
     flex: 0 0 auto;
-
     width: 100%;
     min-height: 75px;
 
@@ -128,9 +123,8 @@ body {
 
     padding: 12px 24px;
 
-    background: #fff7ec;
-
-    border-top: 1px solid #e8d9c8;
+    background: #FFFFFF;
+    border-top: 2px solid #F15A24;
 
     z-index: 10;
 }
@@ -183,10 +177,10 @@ body {
 }
 
 .kiosk-screen .kiosk-content::-webkit-scrollbar-thumb {
-    background: #d6c5b5;
+    background: #F15A24;
     border-radius: 8px;
 }
 
 .kiosk-screen .kiosk-content::-webkit-scrollbar-track {
-    background: transparent;
+    background: #FFF3E8;
 }

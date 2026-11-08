@@ -7,404 +7,469 @@
     <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
     <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        .catalog-background {
-            filter: blur(3px);
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .checkout-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px;
-            background: rgba(35, 25, 18, 0.35);
-        }
-
-        .checkout-modal {
-            position: relative;
-            width: 100%;
-            max-width: 560px;
-            max-height: 94vh;
-            overflow-y: auto;
-            padding: 24px;
-            border-radius: 17px;
-            background: #fff7ec;
-            color: #432718;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .checkout-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .checkout-header h2 {
-            margin: 0;
-            font-size: 23px;
-            font-weight: 700;
-        }
-
-        .checkout-close {
-            flex-shrink: 0;
-            width: 42px;
-            height: 42px;
-            border: none;
-            border-radius: 10px;
-            background: #ffe5c6;
-            color: #432718;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        .checkout-close:hover {
-            background: #ffd8ae;
-        }
-
-        .payment-step {
-            display: none;
-        }
-
-        .payment-step.active {
-            display: block;
-        }
-
-        /* TAHAP 1: KONFIRMASI PESANAN */
-
-        .checkout-product {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .checkout-product img {
-            width: 82px;
-            height: 82px;
-            object-fit: cover;
-            border-radius: 11px;
-        }
-
-        .checkout-product-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .checkout-product-info h3 {
-            margin: 0 0 5px;
-            font-size: 20px;
-        }
-
-        .checkout-product-info p {
-            margin: 3px 0;
-            font-size: 17px;
-            color: #755e4c;
-        }
-
-        .checkout-quantity {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0 15px;
-            border-bottom: 1px solid #efddca;
-            font-size: 17px;
-        }
-
-        .checkout-quantity strong {
-            font-size: 17px;
-        }
-
-        .checkout-total-card {
-            margin-top: 12px;
-            padding: 15px;
-            border-radius: 12px;
-            background: #ffe5c6;
-        }
-
-        .checkout-total-card small {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .checkout-total-card h2 {
-            margin: 5px 0;
-            font-size: 26px;
-        }
-
-        .checkout-total-card p {
-            margin: 0;
-            font-size: 12px;
-            color: #806650;
-        }
-
-        .checkout-question {
-            margin: 16px 0 10px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .checkout-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .checkout-button {
-            min-height: 48px;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .checkout-edit {
-            background: #ffe5c6;
-            color: #432718;
-        }
-
-        .checkout-next {
-            background: #432718;
-            color: #fff;
-        }
-
-        .checkout-button:hover {
-            opacity: 0.88;
-        }
-
-        /* TAHAP 2: PILIH METODE PEMBAYARAN */
-
-        .payment-heading {
-            margin: 0 0 18px;
-            font-size: 25px;
-            font-weight: 700;
-        }
-
-        .payment-description {
-            margin: 0 0 18px;
-            color: #806e5e;
-            font-size: 15px;
-        }
-
-        .payment-total-card {
-            margin-bottom: 14px;
-            padding: 16px;
-            border-radius: 12px;
-            background: #f4511e;
-            color: #fff;
-        }
-
-        .payment-total-card small {
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .payment-total-card h2 {
-            margin: 5px 0;
-            font-size: 27px;
-        }
-
-        .payment-total-card p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        .payment-available {
-            margin: 0 0 12px;
-            color: #89796d;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        /* DASAR CARD PEMBAYARAN */
-
-        .payment-option {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            min-height: 76px;
-            padding: 13px;
-            border: 1px solid #efddca;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-        .payment-option input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* QRIS SELALU HITAM */
-
-        .payment-option.qris-option {
-            background: #211f1d;
-            border-color: #211f1d;
-            color: #fff;
-        }
-
-        .qris-option .
-         {
-            color: #fff;
-        }
-
-        .qris-option .payment-info small {
-            color: #e0d9d3;
-        }
-
-        .qris-option .payment-icon {
-            background: #f4511e;
-            color: #fff;
-        }
-
-        .qris-option .payment-arrow {
-            color: #f4511e;
-        }
-
-        /* VIRTUAL ACCOUNT SELALU PUTIH */
-
-        .payment-option.va-option {
-            background: #fff;
-            border-color: #efddca;
-            color: #432718;
-        }
-
-        .va-option .payment-info strong {
-            color: #432718;
-        }
-
-        .va-option .payment-info small {
-            color: #89796d;
-        }
-
-        .va-option .payment-icon {
-            background: #ffe1d2;
-            color: #f4511e;
-        }
-
-        .va-option .payment-arrow {
-            color: #f4511e;
-        }
-
-        /* IKON */
-
-        .payment-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 11px;
-            font-size: 22px;
-        }
-
-        .payment-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .payment-info strong {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .payment-info small {
-            display: block;
-            font-size: 10px;
-            line-height: 1.4;
-        }
-
-        .payment-arrow {
-            flex-shrink: 0;
-            font-size: 22px;
-        }
-
-        .payment-back {
-            margin-top: 16px;
-            padding: 0;
-            border: none;
-            background: transparent;
-            color: #806e5e;
-            font-size: 12px;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        .payment-back:hover {
-            color: #f4511e;
-        }
-
-        /* MODAL QRIS DAN VA */
-
-        .payment-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 1100;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 14px;
-            background: rgba(35, 25, 18, 0.45);
-        }
-
-        .payment-overlay.show {
-            display: flex;
-        }
-
-        .payment-modal {
-            position: relative;
-            width: 100%;
-            max-width: 520px;
-            max-height: 94vh;
-            overflow-y: auto;
-            padding: 24px;
-            border-radius: 16px;
-            background: #fff7ec;
-        }
-
-        @media (max-width: 600px) {
-            .checkout-modal,
-            .payment-modal {
-                padding: 18px;
-            }
-
-            .checkout-header h2 {
-                font-size: 21px;
-            }
-
-            .checkout-total-card h2,
-            .payment-total-card h2 {
-                font-size: 24px;
-            }
-        }
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* =====================================
+   BACKGROUND DAN OVERLAY
+===================================== */
+
+.catalog-background {
+    filter: blur(3px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.checkout-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    background: rgba(33, 31, 28, 0.45);
+}
+
+/* =====================================
+   MODAL KONFIRMASI
+===================================== */
+
+.checkout-modal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: 94vh;
+    overflow-y: auto;
+    padding: 24px;
+    border: 1px solid #D8C8B8;
+    border-radius: 17px;
+    background: #FFF9F2;
+    color: #211F1C;
+    box-shadow: 0 8px 30px rgba(33, 31, 28, 0.16);
+}
+
+.checkout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.checkout-header h2 {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 700;
+    color: #211F1C;
+}
+
+.checkout-close {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: #E8D9C8;
+    color: #211F1C;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.checkout-close:hover {
+    background: #D8C3AC;
+}
+
+.payment-step {
+    display: none;
+}
+
+.payment-step.active {
+    display: block;
+}
+
+/* =====================================
+   TAHAP 1: KONFIRMASI PESANAN
+===================================== */
+
+.checkout-product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.checkout-product img {
+    width: 82px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 11px;
+}
+
+.checkout-product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.checkout-product-info h3 {
+    margin: 0 0 5px;
+    font-size: 20px;
+    color: #211F1C;
+}
+
+.checkout-product-info p {
+    margin: 3px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #F15A24;
+}
+
+.checkout-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 15px;
+    border-bottom: 1px solid #D8C8B8;
+    font-size: 17px;
+    color: #51483F;
+}
+
+.checkout-quantity strong {
+    font-size: 17px;
+    color: #211F1C;
+}
+
+/* TOTAL PESANAN */
+
+.checkout-total-card {
+    margin-top: 12px;
+    padding: 15px;
+    border: 1px solid #E8D9C8;
+    border-radius: 12px;
+    background: #E8D9C8;
+    color: #211F1C;
+}
+
+.checkout-total-card small {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #51483F;
+}
+
+.checkout-total-card h2 {
+    margin: 5px 0;
+    font-size: 26px;
+    color: #F15A24;
+}
+
+.checkout-total-card p {
+    margin: 0;
+    font-size: 12px;
+    color: #6B625A;
+}
+
+.checkout-question {
+    margin: 16px 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #211F1C;
+}
+
+/* TOMBOL KONFIRMASI */
+
+.checkout-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.checkout-button {
+    min-height: 48px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.checkout-edit {
+    background: #E8D9C8;
+    color: #211F1C;
+}
+
+.checkout-edit:hover {
+    background: #D8C3AC;
+}
+
+.checkout-next {
+    background: #F15A24;
+    color: #FFFFFF;
+}
+
+.checkout-next:hover {
+    background: #D94B19;
+}
+
+.checkout-button:hover {
+    transform: translateY(-1px);
+}
+
+/* =====================================
+   TAHAP 2: METODE PEMBAYARAN
+===================================== */
+
+.payment-heading {
+    margin: 0 0 18px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #211F1C;
+}
+
+.payment-description {
+    margin: 0 0 18px;
+    color: #6B625A;
+    font-size: 15px;
+}
+
+/* TOTAL PEMBAYARAN */
+
+.payment-total-card {
+    margin-bottom: 14px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #F15A24;
+    color: #FFFFFF;
+}
+
+.payment-total-card small {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment-total-card h2 {
+    margin: 5px 0;
+    font-size: 27px;
+    color: #FFFFFF;
+}
+
+.payment-total-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #FFF0E8;
+}
+
+.payment-available {
+    margin: 0 0 12px;
+    color: #6B625A;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =====================================
+   CARD METODE PEMBAYARAN
+===================================== */
+
+.payment-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 76px;
+    padding: 13px;
+    border: 1px solid #D8C8B8;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.payment-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* QRIS */
+
+.payment-option.qris-option {
+    background: #211F1C;
+    border-color: #211F1C;
+    color: #FFFFFF;
+}
+
+.qris-option .payment-info strong {
+    color: #211F1C;
+}
+
+.qris-option .payment-info small {
+    color: #6B625A;
+}
+
+.qris-option .payment-icon {
+    background: #F15A24;
+    color: #FFFFFF;
+}
+
+.qris-option .payment-arrow {
+    color: #F15A24;
+}
+
+.payment-option.qris-option:hover {
+    border-color: #F15A24;
+}
+
+/* VIRTUAL ACCOUNT */
+
+.payment-option.va-option {
+    background: #FFF9F2;
+    border-color: #D8C8B8;
+    color: #211F1C;
+}
+
+.va-option .payment-info strong {
+    color: #211F1C;
+}
+
+.va-option .payment-info small {
+    color: #6B625A;
+}
+
+.va-option .payment-icon {
+    background: #E8D9C8;
+    color: #F15A24;
+}
+
+.va-option .payment-arrow {
+    color: #F15A24;
+}
+
+.payment-option.va-option:hover {
+    border-color: #F15A24;
+    background: #FFF4E9;
+}
+
+/* IKON PEMBAYARAN */
+
+.payment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    font-size: 22px;
+}
+
+.payment-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.payment-info strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.payment-info small {
+    display: block;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.payment-arrow {
+    flex-shrink: 0;
+    font-size: 22px;
+}
+
+/* TOMBOL KEMBALI */
+
+.payment-back {
+    margin-top: 16px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #6B625A;
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.payment-back:hover {
+    color: #F15A24;
+}
+
+/* =====================================
+   MODAL QRIS DAN VIRTUAL ACCOUNT
+===================================== */
+
+.payment-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    background: rgba(33, 31, 28, 0.55);
+}
+
+.payment-overlay.show {
+    display: flex;
+}
+
+.payment-modal {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: 94vh;
+    overflow-y: auto;
+    padding: 24px;
+    border: 1px solid #D8C8B8;
+    border-radius: 16px;
+    background: #FFF9F2;
+    color: #211F1C;
+    box-shadow: 0 8px 30px rgba(33, 31, 28, 0.18);
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+    .checkout-modal,
+    .payment-modal {
+        padding: 18px;
+    }
+
+    .checkout-header h2 {
+        font-size: 21px;
+    }
+
+    .checkout-total-card h2,
+    .payment-total-card h2 {
+        font-size: 24px;
+    }
+}
     </style>
 </head>
 

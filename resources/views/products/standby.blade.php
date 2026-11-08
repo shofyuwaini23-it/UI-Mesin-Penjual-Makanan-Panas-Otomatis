@@ -11,13 +11,14 @@
 
     <style>
         :root {
-            --orange: #F24E1E;
-            --white: #ffffff;
-            --dark: #1E2022;
+            --orange: #F15A24;
+            --cream: #E8D9C8;
+            --white: #FFFFFF;
+            --dark: #211F1C;
             --kiosk-width: 746px;
             --kiosk-height: 1280px;
         }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
