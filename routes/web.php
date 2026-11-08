@@ -28,5 +28,5 @@ Route::get('/orders/finished/{id}', [ProductController::class, 'finished'])
     ->name('orders.finished');
 
 Route::get('/standby', function () {
-    return view('products.standby');
+    return view('standby');
 })->name('standby');
