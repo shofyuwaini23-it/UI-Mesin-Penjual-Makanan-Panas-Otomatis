@@ -1198,3 +1198,25 @@ footer b {
     width: 0;
     height: 0;
 }
+/* HEADER HOTMEAL */
+.kiosk-header {
+    background: #FFF3E8 !important;
+    border-bottom: 1px solid #F3D6C5;
+}
+
+/* FOOTER PEMBAYARAN */
+footer.footer {
+    display: block;
+    margin-top: 25px;
+    padding: 0 0 10px;
+    background: transparent !important;
+    color: #74665D !important;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-mark {
+    color: #17865B;
+    font-weight: 900;
+}

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status Pesanan - TAREMPA</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
 
     <style>
         * {
@@ -18,58 +18,9 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #fff7ec;
-            color: #292522;
+            background: #FFF3E8;
+            color: #211F1C;
             font-size: 18px;
-        }
-
-        /* HEADER */
-        .header {
-            background: #f4511e;
-            color: white;
-            padding: 18px 26px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 80px;
-            gap: 16px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo {
-            background: white;
-            color: #f4511e;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .brand-name {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .brand-subtitle {
-            font-size: 14px;
-            margin-top: 4px;
-            font-weight: bold;
-        }
-
-        .order-number {
-            font-size: 17px;
-            font-weight: bold;
-            text-align: right;
         }
 
         /* KONTEN UTAMA */
@@ -86,10 +37,17 @@
             margin-bottom: 26px;
         }
 
+        .order-number {
+            margin-bottom: 16px;
+            color: #74665D;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
         .status-badge {
             display: inline-block;
-            background: #ffe0cd;
-            color: #c43e16;
+            background: #FFE3D2;
+            color: #C94212;
             padding: 12px 20px;
             border-radius: 24px;
             font-size: 16px;
@@ -105,14 +63,14 @@
         }
 
         .heading p {
-            color: #71665e;
+            color: #74665D;
             font-size: 19px;
             line-height: 1.6;
         }
 
         /* KARTU PROGRES */
         .progress-card {
-            background: #211f1d;
+            background: #211F1C;
             color: white;
             border-radius: 24px;
             padding: 36px;
@@ -140,13 +98,13 @@
 
         .circle-bg {
             fill: none;
-            stroke: #302e2b;
+            stroke: #302E2B;
             stroke-width: 10;
         }
 
         .circle-progress {
             fill: none;
-            stroke: #f4511e;
+            stroke: #F15A24;
             stroke-width: 10;
             stroke-linecap: round;
             stroke-dasharray: 314;
@@ -175,7 +133,7 @@
 
         .timer-text span {
             font-size: 14px;
-            color: #e1dbd5;
+            color: #E1DBD5;
             margin-top: 4px;
         }
 
@@ -186,7 +144,7 @@
         }
 
         .progress-percent {
-            color: #ff7043;
+            color: #F15A24;
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 14px;
@@ -201,7 +159,7 @@
         .progress-track {
             height: 14px;
             width: 100%;
-            background: #45413d;
+            background: #45413D;
             border-radius: 20px;
             overflow: hidden;
         }
@@ -209,7 +167,7 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: #f4511e;
+            background: #F15A24;
             border-radius: 20px;
             transition: width 0.8s linear, background 0.3s;
         }
@@ -225,7 +183,7 @@
         .steps-title {
             font-size: 16px;
             font-weight: bold;
-            color: #71665e;
+            color: #74665D;
             margin-bottom: 22px;
         }
 
@@ -252,18 +210,18 @@
         }
 
         .step.done .step-icon {
-            background: #168b61;
+            background: #168B61;
             color: white;
         }
 
         .step.active .step-icon {
-            background: #f4511e;
+            background: #F15A24;
             color: white;
         }
 
         .step.waiting .step-icon {
-            background: #f8ead6;
-            color: #8c8178;
+            background: #F8EAD6;
+            color: #8C8178;
         }
 
         .step-content {
@@ -279,57 +237,18 @@
 
         .step-content p {
             font-size: 17px;
-            color: #71665e;
+            color: #74665D;
             line-height: 1.6;
-        }
-
-        /* TOMBOL KEMBALI */
-        .back-link {
-            display: block;
-            margin: 26px auto 0;
-            padding: 10px;
-            text-align: center;
-            color: #8b492b;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
         }
 
         /* RESPONSIVE */
         @media (max-width: 600px) {
-            .header {
-                padding: 14px 16px;
-                min-height: 70px;
-            }
-
-            .brand {
-                gap: 8px;
-            }
-
-            .logo {
-                width: 38px;
-                height: 38px;
-                font-size: 21px;
-            }
-
-            .brand-name {
-                font-size: 18px;
-            }
-
-            .brand-subtitle {
-                font-size: 12px;
+            .container {
+                padding: 24px 16px 32px;
             }
 
             .order-number {
-                font-size: 14px;
-            }
-
-            .container {
-                padding: 24px 16px 32px;
+                font-size: 15px;
             }
 
             .status-badge {
@@ -377,10 +296,6 @@
             .step-content p {
                 font-size: 16px;
             }
-
-            .back-link {
-                font-size: 17px;
-            }
         }
 
         @media (max-width: 380px) {
@@ -396,51 +311,89 @@
             .progress-info h2 {
                 font-size: 20px;
             }
-
-            .order-number {
-                font-size: 12px;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="brand">
-            <div class="logo">T</div>
+    {{-- HEADER HOTMEAL: SAMA DENGAN HALAMAN KATALOG --}}
+    <header class="kiosk-header">
+        <div>
+            <div class="brand">
+                <img
+                    src="{{ asset('images/logo 2.jpg') }}"
+                    alt="Logo HotMeal"
+                    class="logo"
+                >
 
-            <div>
-                <div class="brand-name">TAREMPA</div>
-                <div class="brand-subtitle">GO · SMART KIOSK</div>
+                <div>
+                    <b>HotMeal</b>
+                    <small>FAST & FRESH KIOSK</small>
+                </div>
+            </div>
+
+            <div class="header-contact">
+                <img
+                    src="{{ asset('images/icons/icon-call-center.svg') }}"
+                    alt="Call Center"
+                    class="header-icon"
+                >
+
+                <a href="tel:0778123456"
+                   style="color:inherit;text-decoration:none">
+                    Call Center
+                </a>
             </div>
         </div>
 
-        <div class="order-number">
-            Pesanan {{ $orderNumber ?? 'A-024' }}
+        <div class="header-info">
+            <div class="wifi">
+                <img
+                    src="{{ asset('images/icons/icon-wifi.svg') }}"
+                    alt="Wi-Fi"
+                    class="header-icon"
+                >
+
+                <span>Wi-Fi Terhubung</span>
+            </div>
+
+            <div class="date" id="date"></div>
+            <div id="time"></div>
         </div>
     </header>
 
     <main class="container">
 
+        {{-- INFORMASI PESANAN --}}
         <section class="heading">
+
+            <div class="order-number">
+                Nomor Pesanan: {{ $orderNumber ?? 'A-024' }}
+            </div>
+
             <div class="status-badge" id="statusBadge">
                 ♨ &nbsp; SEDANG DISIAPKAN
             </div>
 
-            <h1 id="pageTitle">Pesanan sedang disiapkan</h1>
+            <h1 id="pageTitle">
+                Pesanan sedang disiapkan
+            </h1>
 
             <p id="pageDescription">
                 Mesin sedang memasak {{ $quantity ?? 1 }} porsi
                 {{ $product['name'] ?? 'Mie Tarempa Original' }}.
                 Mohon tetap di dekat mesin.
             </p>
+
         </section>
 
+        {{-- KARTU PROGRES --}}
         <section class="progress-card">
 
             <div class="timer-circle">
                 <svg viewBox="0 0 120 120" aria-hidden="true">
+
                     <circle
                         class="circle-bg"
                         cx="60"
@@ -455,6 +408,7 @@
                         cy="60"
                         r="50">
                     </circle>
+
                 </svg>
 
                 <div class="timer-text">
@@ -464,6 +418,7 @@
             </div>
 
             <div class="progress-info">
+
                 <div class="progress-percent" id="progressPercent">
                     0% SELESAI
                 </div>
@@ -475,47 +430,86 @@
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
+
             </div>
 
         </section>
 
+        {{-- TAHAPAN PESANAN --}}
         <section class="steps-card">
-            <div class="steps-title">PROSES PESANAN</div>
+
+            <div class="steps-title">
+                PROSES PESANAN
+            </div>
 
             <div class="step done" id="stepPayment">
+
                 <div class="step-icon">✓</div>
 
                 <div class="step-content">
                     <h3>Pembayaran dikonfirmasi</h3>
                     <p>Pembayaran pesanan berhasil dikonfirmasi.</p>
                 </div>
+
             </div>
 
             <div class="step active" id="stepCooking">
+
                 <div class="step-icon">☐</div>
 
                 <div class="step-content">
                     <h3>Memasak dan mengemas</h3>
                     <p>Pesanan sedang diproses. Mohon tunggu.</p>
                 </div>
+
             </div>
 
             <div class="step waiting" id="stepPickup">
+
                 <div class="step-icon">☐</div>
 
                 <div class="step-content">
                     <h3>Keluarkan ke laci pengambilan</h3>
                     <p>Silakan ambil makanan setelah pesanan siap.</p>
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
+    {{-- JAM DAN TANGGAL --}}
     <script>
-        // SIMULASI UI: proses berlangsung selama 7 detik.
-        // Setelah selesai, tampilkan centang sebelum berpindah halaman.
+        function updateClock() {
+            const dateElement = document.getElementById('date');
+            const timeElement = document.getElementById('time');
 
+            if (!dateElement || !timeElement) return;
+
+            const now = new Date();
+
+            dateElement.textContent = now.toLocaleDateString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            timeElement.textContent = now.toLocaleTimeString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) + ' WIB';
+        }
+
+        updateClock();
+        setInterval(updateClock, 60000);
+    </script>
+
+    {{-- SIMULASI PROSES PESANAN --}}
+    <script>
         let remainingSeconds = 7;
         let elapsedSeconds = 0;
 
@@ -543,6 +537,7 @@
             );
 
             progressFill.style.width = percent + '%';
+
             progressPercent.textContent =
                 Math.round(percent) + '% SELESAI';
 
@@ -551,7 +546,8 @@
         }
 
         function finishCooking() {
-            // Hentikan perubahan timer dan tampilkan 100%.
+
+            // Tampilkan progres 100%.
             timer.textContent = '00:00';
             timerLabel.textContent = 'SELESAI';
 
@@ -563,31 +559,35 @@
             circleProgress.style.strokeDashoffset = '0';
             circleProgress.classList.add('finished');
 
-            // Tandai proses memasak sebagai selesai.
+            // Tandai proses memasak selesai.
             const cookingStep = document.getElementById('stepCooking');
 
             cookingStep.classList.remove('active');
             cookingStep.classList.add('done');
 
             cookingStep.querySelector('.step-icon').textContent = '✓';
+
             cookingStep.querySelector('h3').textContent =
                 'Memasak dan mengemas selesai';
+
             cookingStep.querySelector('p').textContent =
                 'Proses persiapan pesanan telah selesai.';
 
-            // Tandai proses pengambilan sebagai langkah berikutnya.
+            // Aktifkan tahap pengambilan.
             const pickupStep = document.getElementById('stepPickup');
 
             pickupStep.classList.remove('waiting');
             pickupStep.classList.add('active');
 
             pickupStep.querySelector('.step-icon').textContent = '!';
+
             pickupStep.querySelector('h3').textContent =
                 'Pesanan siap diambil';
+
             pickupStep.querySelector('p').textContent =
                 'Silakan ambil makanan di laci pengambilan.';
 
-            // Perbarui judul dan informasi halaman.
+            // Perbarui informasi halaman.
             document.getElementById('statusBadge').textContent =
                 '✓ PESANAN SIAP DIAMBIL';
 
@@ -600,8 +600,7 @@
             document.getElementById('progressTitle').textContent =
                 'Pesananmu sudah siap!';
 
-            // Biarkan centang terlihat selama 1,5 detik,
-            // lalu lanjut ke halaman pesanan selesai.
+            // Lanjut ke halaman pesanan selesai setelah 1,5 detik.
             setTimeout(() => {
                 window.location.href =
                     @json(route('orders.finished', [
@@ -614,6 +613,7 @@
         updateProgress();
 
         const timerInterval = setInterval(() => {
+
             remainingSeconds--;
             elapsedSeconds++;
 
@@ -624,6 +624,7 @@
             }
 
             updateProgress();
+
         }, 1000);
     </script>
 

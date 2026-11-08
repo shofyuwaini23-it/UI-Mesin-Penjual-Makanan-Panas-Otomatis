@@ -6,9 +6,10 @@
     <title>Memproses Pembayaran - TAREMPA</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
     <style>
         :root {
-            --orange: #f4511e;
+            --orange: #F15A24;
             --cream: #fff7ec;
             --brown: #39291e;
             --muted: #887c71;
@@ -20,52 +21,6 @@
         }
         body {
             margin: 0;
-        }
-
-        /* HEADER */
-        .topbar {
-            min-height: 116px;
-            padding: 22px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            background: var(--orange);
-            color: white;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .brand-icon {
-            width: 58px;
-            height: 58px;
-            flex-shrink: 0;
-            display: grid;
-            place-items: center;
-            border-radius: 18px;
-            background: white;
-            color: var(--orange);
-            font-size: 30px;
-            font-weight: 900;
-        }
-        .brand-name {
-            font-size: 27px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-        }
-        .brand-subtitle {
-            margin-top: 4px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        .secure-label {
-            font-size: 15px;
-            font-weight: 700;
-            white-space: nowrap;
-            color: white;
         }
 
         /* KONTEN UTAMA */
@@ -338,26 +293,82 @@
                 font-size: 12px;
             }
         }
+        /* HEADER MENYESUAIKAN TEMA KATALOG */
+.kiosk-header {
+    background: #FFF3E8 !important;
+    border-bottom: 1px solid #F3D6C5;
+}
+
+/* FOOTER */
+footer.footer {
+    display: block;
+    margin-top: 25px;
+    padding: 0 0 10px;
+    background: transparent !important;
+    color: #74665D !important;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-mark {
+    color: #17865B;
+    font-weight: 900;
+}
     </style>
 </head>
 
 <body>
 
-    <!-- HEADER ORANGE -->
-    <header class="topbar" id="topbar">
+    {{-- HEADER HOTMEAL --}}
+<header class="kiosk-header">
+
+    <div>
         <div class="brand">
-            <div class="brand-icon">T</div>
+            <img
+                src="{{ asset('images/logo 2.jpg') }}"
+                alt="Logo HotMeal"
+                class="logo"
+            >
 
             <div>
-                <div class="brand-name">TAREMPA</div>
-                <div class="brand-subtitle">GO • SMART KIOSK</div>
+                <b>HotMeal</b>
+                <small>FAST & FRESH KIOSK</small>
             </div>
         </div>
 
-        <div class="secure-label" id="secureLabel">
-            🔒 Transaksi aman
+        <div class="header-contact">
+            <img
+                src="{{ asset('images/icons/icon-call-center.svg') }}"
+                alt="Call Center"
+                class="header-icon"
+            >
+
+            <a href="tel:0778123456"
+               style="color:inherit;text-decoration:none">
+                Call Center
+            </a>
         </div>
-    </header>
+    </div>
+
+    <div class="header-info">
+
+        <div class="wifi">
+            <img
+                src="{{ asset('images/icons/icon-wifi.svg') }}"
+                alt="Wi-Fi"
+                class="header-icon"
+            >
+
+            <span>Wi-Fi Terhubung</span>
+        </div>
+
+        <div class="date" id="date"></div>
+        <div id="time"></div>
+
+    </div>
+
+</header>
 
     <main class="container">
 
@@ -451,18 +462,39 @@
 
     <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
 
+    <script>
+    function updateClock() {
+        const dateElement = document.getElementById('date');
+        const timeElement = document.getElementById('time');
+
+        if (!dateElement || !timeElement) return;
+
+        const now = new Date();
+
+        dateElement.textContent = now.toLocaleDateString('id-ID', {
+            timeZone: 'Asia/Jakarta',
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        });
+
+        timeElement.textContent = now.toLocaleTimeString('id-ID', {
+            timeZone: 'Asia/Jakarta',
+            hour: '2-digit',
+            minute: '2-digit'
+        }) + ' WIB';
+    }
+
+    updateClock();
+    setInterval(updateClock, 60000);
+</script>
+
     <!-- TRANSISI 10 DETIK KE HALAMAN SUKSES -->
     <script>
         window.addEventListener('DOMContentLoaded', function () {
 
             window.setTimeout(function () {
-
-                // Ubah teks header
-                const secureLabel = document.getElementById('secureLabel');
-
-                if (secureLabel) {
-                    secureLabel.textContent = 'Pembayaran selesai';
-                }
 
                 // Ubah badge menjadi transaksi berhasil
                 const badgeContainer = document.getElementById('badgeContainer');

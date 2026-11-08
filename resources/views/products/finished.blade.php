@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesanan Selesai - TAREMPA</title>
+    <title>Pesanan Selesai - HotMeal</title>
 
     <link rel="stylesheet" href="{{ asset('css/kiosk-10inch.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
 
     <style>
         * {
@@ -17,66 +18,17 @@
 
         html {
             min-height: 100%;
-            background: #fff7ec;
+            background: #FFF3E8;
         }
 
         body {
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #fff7ec;
-            color: #292522;
+            background: #FFF3E8;
+            color: #211F1C;
         }
 
-        /* Header */
-        .topbar {
-            width: 100%;
-            min-height: 88px;
-            padding: 18px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            border-bottom: 1px solid #eddfcf;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            border-radius: 15px;
-            background: #f4511e;
-            color: white;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .brand-name {
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .brand-subtitle {
-            margin-top: 4px;
-            color: #f4511e;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .header-status {
-            color: #82766b;
-            font-size: 15px;
-            font-weight: bold;
-            text-align: right;
-        }
-
-        /* Konten utama */
+        /* KONTEN UTAMA */
         main {
             width: 100%;
             max-width: 1000px;
@@ -85,7 +37,7 @@
             text-align: center;
         }
 
-        /* Ikon sukses */
+        /* IKON SUKSES */
         .success-icon {
             width: 180px;
             height: 180px;
@@ -93,8 +45,8 @@
             display: grid;
             place-items: center;
             border-radius: 50%;
-            background: #ddf5e9;
-            color: #168b61;
+            background: #DDF5E9;
+            color: #168B61;
         }
 
         .success-icon svg {
@@ -103,7 +55,7 @@
             overflow: visible;
         }
 
-        /* Animasi ilustrasi pesanan selesai */
+        /* ANIMASI ILUSTRASI */
         .success-circle {
             stroke-dasharray: 185;
             stroke-dashoffset: 185;
@@ -161,6 +113,7 @@
             }
         }
 
+        /* BADGE STATUS */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -169,13 +122,14 @@
             margin-bottom: 26px;
             padding: 11px 18px;
             border-radius: 30px;
-            background: #ddf5e9;
-            color: #168b61;
+            background: #DDF5E9;
+            color: #168B61;
             font-size: 14px;
             font-weight: bold;
         }
 
-        h1 {
+        /* JUDUL DAN DESKRIPSI */
+        main h1 {
             margin-bottom: 18px;
             font-size: clamp(30px, 4vw, 42px);
             line-height: 1.2;
@@ -183,12 +137,12 @@
 
         .description {
             margin-bottom: 32px;
-            color: #82766b;
+            color: #74665D;
             font-size: 18px;
             line-height: 1.7;
         }
 
-        /* Petunjuk pengambilan */
+        /* PETUNJUK PENGAMBILAN */
         .pickup-card {
             display: flex;
             align-items: center;
@@ -198,7 +152,7 @@
             padding: 28px;
             margin-bottom: 30px;
             border-radius: 26px;
-            background: #ffdfcc;
+            background: #FFE3D2;
             text-align: left;
         }
 
@@ -209,7 +163,7 @@
             display: grid;
             place-items: center;
             border-radius: 20px;
-            background: #f4511e;
+            background: #F15A24;
             color: white;
         }
 
@@ -230,76 +184,53 @@
         }
 
         .pickup-text p {
-            color: #82766b;
+            color: #74665D;
             font-size: 16px;
             line-height: 1.7;
         }
 
         .pickup-arrow {
             flex-shrink: 0;
-            color: #f4511e;
+            color: #F15A24;
             font-size: 34px;
         }
 
-        /* Kartu terima kasih */
+        /* KARTU TERIMA KASIH */
         .thankyou-card {
             padding: 26px 20px;
             border-radius: 25px;
             background: white;
-            box-shadow: 0 8px 24px #39291e0c;
+            box-shadow: 0 8px 24px #39291E0C;
         }
 
         .thankyou-card h2 {
             margin-bottom: 12px;
-            color: #171717;
+            color: #211F1C;
             font-size: clamp(28px, 4vw, 40px);
             font-weight: normal;
         }
 
         .thankyou-card p {
-            color: #39312b;
+            color: #74665D;
             font-size: 16px;
             line-height: 1.6;
         }
 
-        /* Hitung mundur */
+        /* HITUNG MUNDUR */
         .redirect-note {
             margin-top: 24px;
-            color: #82766b;
+            color: #74665D;
             font-size: 15px;
             line-height: 1.7;
         }
 
         .countdown {
-            color: #f4511e;
+            color: #F15A24;
             font-weight: bold;
         }
 
+        /* RESPONSIVE */
         @media (max-width: 600px) {
-            .topbar {
-                min-height: 72px;
-                padding: 14px 4%;
-            }
-
-            .logo {
-                width: 40px;
-                height: 40px;
-                font-size: 21px;
-            }
-
-            .brand-name {
-                font-size: 19px;
-            }
-
-            .brand-subtitle {
-                font-size: 11px;
-            }
-
-            .header-status {
-                max-width: 120px;
-                font-size: 12px;
-            }
-
             main {
                 padding: 32px 20px;
             }
@@ -321,7 +252,7 @@
                 font-size: 12px;
             }
 
-            h1 {
+            main h1 {
                 font-size: 29px;
             }
 
@@ -375,30 +306,62 @@
 </head>
 
 <body>
-    <header class="topbar">
-        <div class="brand">
-            <div class="logo">T</div>
 
-            <div>
-                <div class="brand-name">TAREMPA</div>
-                <div class="brand-subtitle">GO · SMART KIOSK</div>
+    {{-- HEADER HOTMEAL --}}
+    <header class="kiosk-header">
+        <div>
+            <div class="brand">
+                <img
+                    src="{{ asset('images/logo 2.jpg') }}"
+                    alt="Logo HotMeal"
+                    class="logo"
+                >
+
+                <div>
+                    <b>HotMeal</b>
+                    <small>FAST & FRESH KIOSK</small>
+                </div>
+            </div>
+
+            <div class="header-contact">
+                <img
+                    src="{{ asset('images/icons/icon-call-center.svg') }}"
+                    alt="Call Center"
+                    class="header-icon"
+                >
+
+                <a href="tel:0778123456"
+                   style="color:inherit;text-decoration:none">
+                    Call Center
+                </a>
             </div>
         </div>
 
-        <div class="header-status">
-            Pembayaran selesai
+        <div class="header-info">
+            <div class="wifi">
+                <img
+                    src="{{ asset('images/icons/icon-wifi.svg') }}"
+                    alt="Wi-Fi"
+                    class="header-icon"
+                >
+
+                <span>Wi-Fi Terhubung</span>
+            </div>
+
+            <div class="date" id="date"></div>
+            <div id="time"></div>
         </div>
     </header>
 
     <main>
-        <!-- Ilustrasi pesanan selesai -->
+
+        {{-- ILUSTRASI PESANAN SELESAI --}}
         <div class="success-icon">
             <svg viewBox="0 0 100 100"
                  fill="none"
                  xmlns="http://www.w3.org/2000/svg"
                  aria-label="Pesanan berhasil">
 
-                <!-- Lingkaran terbuka -->
                 <circle class="success-circle"
                         cx="50"
                         cy="50"
@@ -408,7 +371,6 @@
                         stroke-dasharray="185 55"
                         stroke-linecap="round"/>
 
-                <!-- Centang -->
                 <path class="success-check"
                       d="M30 50 L43 63 L76 30"
                       stroke="#292522"
@@ -416,24 +378,21 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"/>
 
-                <!-- Aksen kuning -->
                 <path class="success-accent accent-yellow"
                       d="M84 11 L80 19"
-                      stroke="#ffc13d"
+                      stroke="#FFC13D"
                       stroke-width="7"
                       stroke-linecap="round"/>
 
-                <!-- Aksen hijau -->
                 <path class="success-accent accent-green"
                       d="M13 79 L17 86"
-                      stroke="#168b61"
+                      stroke="#168B61"
                       stroke-width="6"
                       stroke-linecap="round"/>
 
-                <!-- Aksen oranye -->
                 <path class="success-accent accent-orange"
                       d="M8 21 L12 17"
-                      stroke="#f4511e"
+                      stroke="#F15A24"
                       stroke-width="5"
                       stroke-linecap="round"/>
             </svg>
@@ -450,13 +409,18 @@
             Terima kasih. Pesanan Anda sudah berada di laci bagian bawah.
         </p>
 
-        <!-- Petunjuk pengambilan -->
+        {{-- PETUNJUK PENGAMBILAN --}}
         <section class="pickup-card">
+
             <div class="pickup-icon">
-                <svg viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.5"
-                     stroke-linecap="round" stroke-linejoin="round"
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.5"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
                      aria-hidden="true">
+
                     <path d="M12 3 3 8l9 5 9-5-9-5Z"/>
                     <path d="m3 8 9 5 9-5"/>
                     <path d="M3 8v9l9 5 9-5V8"/>
@@ -475,22 +439,54 @@
             </div>
 
             <div class="pickup-arrow" aria-hidden="true">↓</div>
+
         </section>
 
-        <!-- Kartu terima kasih -->
+        {{-- KARTU TERIMA KASIH --}}
         <section class="thankyou-card">
             <h2>Terima Kasih!</h2>
             <p>Semoga hari Anda menyenangkan :)</p>
         </section>
 
-        <!-- Hitung mundur -->
+        {{-- HITUNG MUNDUR --}}
         <p class="redirect-note">
             Kembali ke katalog dalam
             <span class="countdown" id="countdown">10</span>
             detik...
         </p>
+
     </main>
 
+    {{-- JAM DAN TANGGAL --}}
+    <script>
+        function updateClock() {
+            const dateElement = document.getElementById('date');
+            const timeElement = document.getElementById('time');
+
+            if (!dateElement || !timeElement) return;
+
+            const now = new Date();
+
+            dateElement.textContent = now.toLocaleDateString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                weekday: 'short',
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            });
+
+            timeElement.textContent = now.toLocaleTimeString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) + ' WIB';
+        }
+
+        updateClock();
+        setInterval(updateClock, 60000);
+    </script>
+
+    {{-- HITUNG MUNDUR KEMBALI KE KATALOG --}}
     <script>
         let seconds = 10;
 
@@ -510,5 +506,6 @@
     </script>
 
     <script src="{{ asset('js/kiosk-viewport.js') }}"></script>
+
 </body>
 </html>
