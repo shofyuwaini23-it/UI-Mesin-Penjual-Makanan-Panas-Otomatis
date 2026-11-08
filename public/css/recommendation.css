@@ -613,3 +613,562 @@
         font-size: 13px;
     }
 }
+
+/* =====================================
+   HALAMAN LOADING REKOMENDASI AI
+===================================== */
+
+.recommendation-loading-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+    background: #fff7ec;
+}
+
+.recommendation-loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+}
+
+.recommendation-loading-animation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    height: 125px;
+    margin-bottom: 32px;
+}
+
+.loading-circle {
+    position: absolute;
+    inset: 0;
+    border: 7px solid #ffe5c6;
+    border-top-color: #f4511e;
+    border-radius: 50%;
+    animation: recommendationSpin 1.2s linear infinite;
+}
+
+.loading-icon {
+    font-size: 48px;
+}
+
+.recommendation-loading-content h1 {
+    margin: 0 0 14px;
+    color: #432718;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.recommendation-loading-content p {
+    max-width: 420px;
+    margin: 0;
+    color: #82766b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.loading-progress {
+    overflow: hidden;
+    width: 100%;
+    max-width: 330px;
+    height: 9px;
+    margin-top: 35px;
+    border-radius: 20px;
+    background: #ffe5c6;
+}
+
+.loading-progress-bar {
+    width: 40%;
+    height: 100%;
+    border-radius: 20px;
+    background: #f4511e;
+    animation: recommendationProgress 2s ease-in-out infinite alternate;
+}
+
+.loading-caption {
+    margin-top: 15px;
+    color: #a18d7d;
+    font-size: 13px;
+}
+
+@keyframes recommendationSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes recommendationProgress {
+    from {
+        width: 15%;
+    }
+
+    to {
+        width: 90%;
+    }
+}
+
+/* =====================================
+   HALAMAN HASIL REKOMENDASI AI
+===================================== */
+
+.recommendation-success-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+    background: #fff7ec;
+}
+
+.recommendation-result-container {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.recommendation-result-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.recommendation-result-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #f4511e;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.recommendation-result-header h1 {
+    margin: 0 0 10px;
+    color: #432718;
+    font-size: 30px;
+}
+
+.recommendation-result-header p {
+    margin: 0;
+    color: #82766b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.recommendation-preference-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.recommendation-preference-summary div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 15px;
+    border: 1px solid #eddfcf;
+    border-radius: 13px;
+    background: #fff;
+}
+
+.recommendation-preference-summary span {
+    color: #82766b;
+    font-size: 12px;
+}
+
+.recommendation-preference-summary strong {
+    color: #432718;
+    font-size: 15px;
+}
+
+.recommendation-result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.recommendation-food-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #eddfcf;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.recommendation-food-image {
+    position: relative;
+    flex: 0 0 220px;
+    height: auto;
+    min-height: 220px;
+    background: #ffe5c6;
+}
+
+.recommendation-food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recommendation-food-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 7px 11px;
+    border-radius: 20px;
+    background: #f4511e;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.recommendation-food-info {
+    flex: 1;
+    min-width: 0;
+    padding: 20px;
+}
+
+.recommendation-food-info {
+    padding: 16px;
+}
+
+.recommendation-food-info h3 {
+    margin: 0 0 8px;
+    color: #432718;
+    font-size: 17px;
+}
+
+.recommendation-food-description {
+    min-height: 42px;
+    margin: 0 0 14px;
+    color: #82766b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.recommendation-food-nutrition {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fff7ec;
+}
+
+.recommendation-food-nutrition span {
+    color: #5b4636;
+    font-size: 12px;
+}
+
+.recommendation-food-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 16px;
+}
+
+.recommendation-food-bottom strong {
+    color: #f4511e;
+    font-size: 19px;
+}
+
+.recommendation-select-button {
+    width: 100%;
+    min-height: 43px;
+    border: none;
+    border-radius: 10px;
+    background: #432718;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.recommendation-select-button:hover {
+    background: #5b3622;
+}
+
+.recommendation-result-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.recommendation-result-footer button {
+    min-height: 45px;
+    padding: 12px 25px;
+    border: 1px solid #432718;
+    border-radius: 10px;
+    background: transparent;
+    color: #432718;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.recommendation-result-footer button:hover {
+    background: #ffe5c6;
+}
+
+@media (max-width: 700px) {
+    .recommendation-success-page {
+        padding: 25px 18px;
+    }
+
+    .recommendation-result-list {
+        grid-template-columns: 1fr;
+    }
+
+    .recommendation-preference-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .recommendation-food-image {
+    flex-basis: 130px;
+    min-height: 180px;
+}
+
+    .recommendation-result-header h1 {
+        font-size: 24px;
+    }
+}
+
+/* =====================================
+   HALAMAN REKOMENDASI TIDAK DITEMUKAN
+===================================== */
+
+.recommendation-empty-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+    background: #fff7ec;
+}
+
+.recommendation-empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+}
+
+.recommendation-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 25px;
+    border-radius: 30px;
+    background: #ffe5c6;
+}
+
+.recommendation-empty-icon span {
+    font-size: 60px;
+}
+
+.recommendation-empty-label {
+    margin-bottom: 12px;
+    color: #f4511e;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.recommendation-empty-content h1 {
+    margin: 0 0 14px;
+    color: #432718;
+    font-size: 28px;
+    line-height: 1.4;
+}
+
+.recommendation-empty-content > p {
+    max-width: 430px;
+    margin: 0;
+    color: #82766b;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.recommendation-empty-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    margin-top: 25px;
+    padding: 17px;
+    border: 1px solid #eddfcf;
+    border-radius: 13px;
+    background: #fff;
+    text-align: left;
+}
+
+.recommendation-empty-info span {
+    font-size: 24px;
+}
+
+.recommendation-empty-info p {
+    margin: 0;
+    color: #5b4636;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.recommendation-empty-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 330px;
+    margin-top: 28px;
+}
+
+.recommendation-empty-actions button {
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#emptyRepeatButton {
+    background: #432718;
+    color: #fff;
+}
+
+#emptyRepeatButton:hover {
+    background: #5b3622;
+}
+
+#emptyCatalogButton {
+    border: 1px solid #432718;
+    background: transparent;
+    color: #432718;
+}
+
+#emptyCatalogButton:hover {
+    background: #ffe5c6;
+}
+
+@media (max-width: 600px) {
+    .recommendation-empty-content h1 {
+        font-size: 23px;
+    }
+
+    .recommendation-empty-content > p {
+        font-size: 13px;
+    }
+}
+
+/* =====================================
+   PENYESUAIAN HEADER REKOMENDASI
+===================================== */
+
+/* LOADING */
+.recommendation-loading-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.recommendation-loading-content {
+    flex: 1;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* HASIL REKOMENDASI */
+.recommendation-success-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    overflow-y: auto;
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+}
+
+.recommendation-result-container {
+    padding: 35px 45px;
+}
+
+/* REKOMENDASI TIDAK DITEMUKAN */
+.recommendation-empty-page {
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100%;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.recommendation-empty-content {
+    flex: 1;
+    justify-content: center;
+    padding: 30px;
+}
+.recommendation-loading-page .kiosk-header,
+.recommendation-success-page .kiosk-header,
+.recommendation-empty-page .kiosk-header {
+    background: #F15A24 !important;
+    color: #FFFFFF !important;
+}
+.recommendation-loading-page .kiosk-header .brand small,
+.recommendation-success-page .kiosk-header .brand small,
+.recommendation-empty-page .kiosk-header .brand small {
+    color: #FFFFFF !important;
+}
+.recommendation-loading-page .kiosk-header .wifi span,
+.recommendation-success-page .kiosk-header .wifi span,
+.recommendation-empty-page .kiosk-header .wifi span {
+    color: #FFFFFF !important;
+}
+.recommendation-loading-page .kiosk-header .wifi img,
+.recommendation-success-page .kiosk-header .wifi img,
+.recommendation-empty-page .kiosk-header .wifi img {
+    filter: brightness(0) invert(1);
+}
+.recommendation-loading-page .kiosk-header .header-contact img,
+.recommendation-success-page .kiosk-header .header-contact img,
+.recommendation-empty-page .kiosk-header .header-contact img {
+    filter: brightness(0) invert(1);
+}

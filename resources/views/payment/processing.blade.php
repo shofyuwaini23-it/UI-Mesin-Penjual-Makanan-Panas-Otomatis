@@ -293,10 +293,32 @@
                 font-size: 12px;
             }
         }
-        /* HEADER MENYESUAIKAN TEMA KATALOG */
+       /* HEADER ORANGE HOTMEAL */
 .kiosk-header {
-    background: #FFF3E8 !important;
-    border-bottom: 1px solid #F3D6C5;
+    background: #F15A24 !important;
+    color: #FFFFFF !important;
+    border-bottom: 1px solid #D94816;
+}
+
+.kiosk-header .brand,
+.kiosk-header .brand b,
+.kiosk-header .brand small,
+.kiosk-header .header-contact,
+.kiosk-header .header-contact a,
+.kiosk-header .header-info,
+.kiosk-header .wifi,
+.kiosk-header .date {
+    color: #FFFFFF !important;
+}
+
+/* Ikon Call Center putih */
+.kiosk-header .header-contact .header-icon {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Ikon Wi-Fi putih */
+.kiosk-header .wifi .header-icon {
+    filter: brightness(0) invert(1) !important;
 }
 
 /* FOOTER */

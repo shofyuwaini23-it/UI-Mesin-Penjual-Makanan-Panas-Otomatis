@@ -19,31 +19,37 @@
 
     {{-- TANGGAL DAN WAKTU --}}
     <script>
-        function updateClock() {
-            const dateElement = document.getElementById('date');
-            const timeElement = document.getElementById('time');
+       
+function updateClock() {
+    const now = new Date();
 
-            if (!dateElement || !timeElement) return;
+    const dateText = now.toLocaleDateString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        weekday: 'short',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    });
 
-            const now = new Date();
+    const timeText = now.toLocaleTimeString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        minute: '2-digit'
+    }) + ' WIB';
 
-            dateElement.textContent = now.toLocaleDateString('id-ID', {
-                timeZone: 'Asia/Jakarta',
-                weekday: 'short',
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric'
-            });
+    document.querySelectorAll('.kiosk-header .date')
+        .forEach(element => {
+            element.textContent = dateText;
+        });
 
-            timeElement.textContent = now.toLocaleTimeString('id-ID', {
-                timeZone: 'Asia/Jakarta',
-                hour: '2-digit',
-                minute: '2-digit'
-            }) + ' WIB';
-        }
+    document.querySelectorAll('.kiosk-header .header-time')
+        .forEach(element => {
+            element.textContent = timeText;
+        });
+}
 
-        updateClock();
-        setInterval(updateClock, 60000);
+updateClock();
+setInterval(updateClock, 60000);
     </script>
 
     <script src="{{ asset('js/recommendation.js') }}"></script>

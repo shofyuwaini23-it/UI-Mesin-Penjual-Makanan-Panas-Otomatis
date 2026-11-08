@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const ingredientError = document.getElementById('ingredientError');
     const ingredientSelectedInfo = document.getElementById('ingredientSelectedInfo');
 
+    const recommendationLoadingPage = document.getElementById('recommendationLoadingPage');
+
     // =====================================
     // STATE
     // =====================================
@@ -79,6 +81,131 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.body.classList.remove('modal-open');
     }
+
+    // =====================================
+// TAMPILKAN HALAMAN LOADING
+// =====================================
+
+function showRecommendationLoading() {
+
+    closeRecommendationPopup();
+
+    if (recommendationLoadingPage) {
+        recommendationLoadingPage.style.display = 'flex';
+        document.body.classList.add('modal-open');
+    }
+
+    // Tampilkan hasil simulasi setelah 3 detik
+    setTimeout(function () {
+
+        if (recommendationLoadingPage) {
+            recommendationLoadingPage.style.display = 'none';
+        }
+
+        showRecommendationResult(true);
+
+    }, 3000);
+
+}
+// =====================================
+// TAMPILKAN HASIL REKOMENDASI
+// =====================================
+
+function showRecommendationResult(hasRecommendation) {
+
+    const successPage = document.getElementById('recommendationSuccessPage');
+    const emptyPage = document.getElementById('recommendationEmptyPage');
+
+    // Sembunyikan kedua halaman hasil terlebih dahulu
+    successPage.style.display = 'none';
+    emptyPage.style.display = 'none';
+
+    if (hasRecommendation) {
+
+        successPage.style.display = 'block';
+
+        // Tampilkan ringkasan preferensi
+        document.getElementById('resultCalorie').textContent =
+            sessionStorage.getItem('hotmeal_target_calorie') || '-';
+
+        document.getElementById('resultNutrition').textContent =
+            sessionStorage.getItem('hotmeal_priority_nutrition') || '-';
+
+        const allergy = sessionStorage.getItem('hotmeal_has_allergy');
+
+        document.getElementById('resultAllergy').textContent =
+            allergy === 'Ya'
+                ? JSON.parse(sessionStorage.getItem('hotmeal_allergy_ingredients') || '[]').join(', ')
+                : 'Tidak ada';
+
+    } else {
+
+        emptyPage.style.display = 'flex';
+
+    }
+
+}
+// =====================================
+// ULANGI PREFERENSI
+// =====================================
+
+function repeatRecommendation() {
+
+    document.getElementById('recommendationSuccessPage').style.display = 'none';
+    document.getElementById('recommendationEmptyPage').style.display = 'none';
+
+    selectedCalorie = '';
+    selectedNutrition = '';
+    selectedAllergy = '';
+    selectedIngredients = [];
+
+    // Hapus data preferensi sebelumnya
+    sessionStorage.removeItem('hotmeal_target_calorie');
+    sessionStorage.removeItem('hotmeal_priority_nutrition');
+    sessionStorage.removeItem('hotmeal_has_allergy');
+    sessionStorage.removeItem('hotmeal_allergy_ingredients');
+
+    // Reset pilihan visual
+    popup.querySelectorAll('.calorie-option, .nutrition-option, .allergy-option, .ingredient-option')
+        .forEach(function (option) {
+            option.classList.remove('selected');
+        });
+
+    calorieNext.disabled = true;
+    nutritionNext.disabled = true;
+    allergyNext.disabled = true;
+
+    firstStep.style.display = 'block';
+    calorieStep.style.display = 'none';
+    nutritionStep.style.display = 'none';
+    allergyStep.style.display = 'none';
+    allergyIngredientsStep.style.display = 'none';
+
+    popupAlreadyShown = true;
+
+    popup.classList.add('show');
+    popup.setAttribute('aria-hidden', 'false');
+
+    document.body.classList.add('modal-open');
+
+}
+
+document.getElementById('recommendationRepeatButton')
+    .addEventListener('click', repeatRecommendation);
+
+document.getElementById('emptyRepeatButton')
+    .addEventListener('click', repeatRecommendation);
+
+// =====================================
+// KEMBALI KE KATALOG
+// =====================================
+
+document.getElementById('emptyCatalogButton')
+    .addEventListener('click', function () {
+
+        window.location.href = '/products';
+
+    });
 
     // =====================================
     // TIMER 30 DETIK TANPA AKTIVITAS
@@ -262,6 +389,7 @@ allergyBack.addEventListener('click', function () {
 
 // Lanjut berdasarkan jawaban alergi
 
+
 allergyNext.addEventListener('click', function () {
 
     if (!selectedAllergy) {
@@ -277,8 +405,11 @@ allergyNext.addEventListener('click', function () {
     allergyStep.style.display = 'none';
 
     if (selectedAllergy === 'Ya') {
+
         allergyIngredientsStep.style.display = 'block';
+
     } else {
+
         selectedIngredients = [];
 
         sessionStorage.setItem(
@@ -286,12 +417,11 @@ allergyNext.addEventListener('click', function () {
             JSON.stringify([])
         );
 
-        alert('Preferensi berhasil disimpan. Siap menuju rekomendasi makanan.');
-        closeRecommendationPopup();
+        showRecommendationLoading();
+
     }
 
 });
-
 
 // =====================================
 // HALAMAN KELIMA - PILIH BAHAN ALERGI
@@ -339,6 +469,7 @@ ingredientBack.addEventListener('click', function () {
 });
 
 // Simpan pilihan bahan alergi
+
 ingredientSave.addEventListener('click', function () {
 
     if (selectedIngredients.length === 0) {
@@ -351,9 +482,7 @@ ingredientSave.addEventListener('click', function () {
         JSON.stringify(selectedIngredients)
     );
 
-    alert('Preferensi alergi berhasil disimpan. Siap menuju rekomendasi makanan.');
-
-    closeRecommendationPopup();
+    showRecommendationLoading();
 
 });
 

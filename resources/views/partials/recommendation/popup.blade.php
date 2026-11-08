@@ -73,3 +73,12 @@
 
     </div>
 </div>
+
+        {{-- HALAMAN 6: LOADING REKOMENDASI AI --}}
+        @include('partials.recommendation.results.loading')
+
+        {{-- HALAMAN 7: HASIL REKOMENDASI AI --}}
+        @include('partials.recommendation.results.success')
+
+        {{-- HALAMAN 8: REKOMENDASI TIDAK DITEMUKAN --}}
+        @include('partials.recommendation.results.empty')

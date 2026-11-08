@@ -76,6 +76,11 @@ header {
     color: #31805e;
 }
 
+.header-info .wifi img {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(17%)
+            saturate(1050%) hue-rotate(103deg) brightness(91%) contrast(87%);
+}
+
 .header-info .date {
     font-weight: bold;
 }
