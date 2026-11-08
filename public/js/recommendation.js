@@ -102,7 +102,7 @@ function showRecommendationLoading() {
             recommendationLoadingPage.style.display = 'none';
         }
 
-        showRecommendationResult(true);
+        showRecommendationResult(false);
 
     }, 3000);
 

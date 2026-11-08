@@ -950,28 +950,33 @@
     }
 }
 
-/* =====================================
-   HALAMAN REKOMENDASI TIDAK DITEMUKAN
-===================================== */
-
+/* REKOMENDASI TIDAK DITEMUKAN */
 .recommendation-empty-page {
     position: fixed;
     inset: 0;
-    z-index: 10000;
+    z-index: 10002;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    background: #fff7ec;
+    box-sizing: border-box;
+}
+
+.recommendation-empty-content {
+    flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     padding: 30px;
+    box-sizing: border-box;
     background: #fff7ec;
-}
-
-.recommendation-empty-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 550px;
     text-align: center;
 }
 
