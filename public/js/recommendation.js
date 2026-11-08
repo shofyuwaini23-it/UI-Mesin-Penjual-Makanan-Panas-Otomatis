@@ -486,6 +486,27 @@ ingredientSave.addEventListener('click', function () {
 
 });
 
+// =====================================
+// PILIH MAKANAN DARI HASIL REKOMENDASI
+// =====================================
+
+document.querySelectorAll('.recommendation-select-button')
+    .forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            const productId = this.dataset.productId;
+
+            if (!productId) {
+                return;
+            }
+
+            window.location.href = `/products/${productId}`;
+
+        });
+
+    });
+    
     // =====================================
     // MULAI TIMER
     // =====================================

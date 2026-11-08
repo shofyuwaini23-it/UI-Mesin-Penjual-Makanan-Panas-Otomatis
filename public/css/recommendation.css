@@ -894,15 +894,15 @@
     min-height: 43px;
     border: none;
     border-radius: 10px;
-    background: #432718;
-    color: #fff;
+    background: #F15A24;
+    color: #FFFFFF;
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
 }
 
 .recommendation-select-button:hover {
-    background: #5b3622;
+    background: #D94816;
 }
 
 .recommendation-result-footer {
